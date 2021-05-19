@@ -7,3 +7,6 @@ target
 /.settings
 /RUNNING_PID
 project/project
+*.sc
+.bsp
+

@@ -1,5 +1,7 @@
-@()
+@(spells: Spells)
 
 @main("Welcome to Play") {
   <h1>Welcome to Play!</h1>
+  <h2>@spells.spellType</h2>
+  <h3>@spells.rank</h3>
 }
