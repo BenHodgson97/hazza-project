@@ -4,15 +4,14 @@ import javax.inject._
 import models.Spells
 import play.api._
 import play.api.mvc._
+import repositories.SpellRepository
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
  * application's home page.
  */
 @Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
-
-  val x: Spells = Spells(1, "spellName", 1, "spellType", "skill", "abilityType", 1, "description", 1, 1)
+class SpellsController @Inject()(val controllerComponents: ControllerComponents, spellRepository: SpellRepository) extends BaseController {
 
   /**
    * Create an Action to render an HTML page.
@@ -22,6 +21,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    * a path of `/`.
    */
   def index() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.index(x))
+    Ok(views.html.index(spellRepository.spell))
   }
 }
