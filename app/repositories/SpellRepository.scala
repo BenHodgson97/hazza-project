@@ -1,11 +1,11 @@
 package repositories
 
-import com.google.inject.Inject
-import config.AppConfig
+import com.google.inject.{Inject, Singleton}
 import models.Spells
+import play.modules.reactivemongo.ReactiveMongoApi
 
-
-class SpellRepository @Inject()(appConfig: AppConfig){
+@Singleton
+class SpellRepository @Inject()(reactiveMongoApi: ReactiveMongoApi){
 
   val spell: Spells = Spells(1, "spellName", 1, "spellType", "skill", "abilityType", 1, "description", 1, 1)
 
