@@ -1,9 +1,0 @@
-@(spells: Seq[Spells])
-
-@main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
-  @spells.map { spell =>
-    <h2>@spell.name</h2>
-    <h3>@spell.rank</h3>
-  }
-}

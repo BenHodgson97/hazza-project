@@ -7,9 +7,9 @@ case class Spells(
                    name: String,
                    rank: Int,
                    opposing: Boolean,
-                   spellType: Seq[String], //TODO Enumerated
-                   skill: Seq[String], //TODO Enumerated
-                   abilityType: String, //TODO Enumerated
+                   spellType: Seq[SpellType],
+                   skill: Seq[Skill],
+                   abilityType: AbilityType,
                    cost: Int,
                    description: String,
                    group: Int,

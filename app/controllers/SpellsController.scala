@@ -3,6 +3,7 @@ package controllers
 import com.google.inject.{Inject, Singleton}
 import play.api.mvc._
 import repositories.SpellRepository
+import views.html.SpellListView
 
 import scala.concurrent.ExecutionContext
 
@@ -11,7 +12,11 @@ import scala.concurrent.ExecutionContext
  * application's home page.
  */
 @Singleton
-class SpellsController @Inject()(val controllerComponents: ControllerComponents, spellRepository: SpellRepository)(implicit executionContext: ExecutionContext) extends BaseController {
+class SpellsController @Inject()(
+                                  val controllerComponents: ControllerComponents,
+                                  spellRepository: SpellRepository,
+                                  spellListView: SpellListView
+                                )(implicit executionContext: ExecutionContext) extends BaseController {
 
   /**
    * Create an Action to render an HTML page.
@@ -20,9 +25,11 @@ class SpellsController @Inject()(val controllerComponents: ControllerComponents,
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
+
   def index() = Action.async { implicit request: Request[AnyContent] =>
-    spellRepository.getAllSpells.map { spells =>
-      Ok(views.html.index(spells))
+    spellRepository.getAllSpells.map {
+      spells =>
+        Ok(spellListView(spells))
     }
   }
 }
