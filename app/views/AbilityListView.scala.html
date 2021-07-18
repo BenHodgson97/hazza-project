@@ -1,5 +1,5 @@
 @this(main: MainTemplate)
-@(abilities: Seq[Ability])
+@(abilities: Seq[Ability])(implicit request: Request[_])
 
 @main("Ability List") {
   <h1>Ability List</h1>

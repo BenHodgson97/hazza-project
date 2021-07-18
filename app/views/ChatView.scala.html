@@ -1,0 +1,24 @@
+@this(main: MainTemplate)
+
+@(username: String, chatNames: List[String])(implicit request: Request[_])
+
+@main("TEMP - CHAT") {
+
+  <div id="chats">
+    @for(chatName <- chatNames){
+      <div class="chat">
+        <h4>@chatName</h4>
+        <div id=@{chatName+"-messages"}>
+        </div>
+        <input type="text" id=@{chatName+"-submit"} class="chat-submit">
+
+      </div>
+    }
+  </div>
+
+  <script id="chat" src=@routes.Assets.versioned("javascripts/chat.js").url
+          type="text/javascript"
+          chat-url=@controllers.routes.ChatController.chatSocket.webSocketURL()
+          username=@username></script>
+
+}
