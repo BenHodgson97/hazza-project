@@ -1,8 +1,8 @@
 @this(main: MainTemplate)
-@(spells: Seq[Spells])
+@(spells: Seq[Spell])
 
-@main("Spell List") {
-  <h1>Spell List</h1>
+@main("Ability List") {
+  <h1>Ability List</h1>
   <div>
     @spells.map { spell =>
       <div>
@@ -12,7 +12,6 @@
         </div>
         <div>
           <p>@spell.skill.mkString("/")</p>
-          <p>@spell.abilityType</p>
           <p>@spell.spellType.mkString</p>
         </div>
 

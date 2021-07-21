@@ -1,9 +1,10 @@
 package controllers
 
 import com.google.inject.{Inject, Singleton}
+import models.Spell
 import play.api.mvc._
-import repositories.SpellRepository
-import views.html.SpellListView
+import repositories.AbilityRepository
+import views.html.AbilityListView
 
 import scala.concurrent.ExecutionContext
 
@@ -12,10 +13,10 @@ import scala.concurrent.ExecutionContext
  * application's home page.
  */
 @Singleton
-class SpellsController @Inject()(
+class AbilityController @Inject()(
                                   val controllerComponents: ControllerComponents,
-                                  spellRepository: SpellRepository,
-                                  spellListView: SpellListView
+                                  abilityRepository: AbilityRepository,
+                                  abilityListView: AbilityListView
                                 )(implicit executionContext: ExecutionContext) extends BaseController {
 
   /**
@@ -27,9 +28,9 @@ class SpellsController @Inject()(
    */
 
   def index() = Action.async { implicit request: Request[AnyContent] =>
-    spellRepository.getAllSpells.map {
+    abilityRepository.getAbilityListItems.map {
       spells =>
-        Ok(spellListView(spells))
+        Ok(abilityListView(spells.map(_.asInstanceOf[Spell])))
     }
   }
 }
