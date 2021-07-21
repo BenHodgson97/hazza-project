@@ -1,25 +1,35 @@
 @this(main: MainTemplate)
-@(spells: Seq[Spell])
+@(abilities: Seq[Ability])
 
 @main("Ability List") {
   <h1>Ability List</h1>
   <div>
-    @spells.map { spell =>
-      <div>
-        <div>
-          <h2>@spell.name</h2>
-          <p>@spell.rank</p>
-        </div>
-        <div>
-          <p>@spell.skill.mkString("/")</p>
-          <p>@spell.spellType.mkString</p>
-        </div>
+      @abilities.map {
+        case spell: Spell => {
+          <div>
+            <div>
+              <h2>@spell.name</h2>
+              <p>@spell.rank</p>
+            </div>
+            <div>
+              <p>@spell.skill.mkString("/")</p>
+              <p>@spell.spellType.mkString</p>
+            </div>
 
-        <p>@spell.description</p>
+            <p>@spell.description</p>
 
-        <p>@spell.cost xp</p>
-      </div>
+            <p>@spell.cost xp</p>
+          </div>
+        }
 
-    }
+        case upgrade: Upgrade => {
+          <h2>@upgrade.name</h2>
+          <p>@upgrade.spellId</p>
+        }
+
+        case special: Special => {
+          <h2>@special.name</h2>
+        }
+      }
   </div>
 }

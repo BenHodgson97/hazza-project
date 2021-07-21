@@ -29,8 +29,8 @@ class AbilityController @Inject()(
 
   def index() = Action.async { implicit request: Request[AnyContent] =>
     abilityRepository.getAbilityListItems.map {
-      spells =>
-        Ok(abilityListView(spells.map(_.asInstanceOf[Spell])))
+      abilities =>
+        Ok(abilityListView(abilities))
     }
   }
 }
