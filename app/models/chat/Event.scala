@@ -11,10 +11,17 @@ object Event {
       case "Logout" => json.validate[Logout]
       case "ChatMessage" => json.validate[OutgoingMessage]
       case "IncomingMessage" => json.validate[IncomingMessage]
+      case "Ping" => JsSuccess(Ping)
     }
   }
-  implicit val messageFlowTransformer: MessageFlowTransformer[Event, ChatMessage] =
-    MessageFlowTransformer.jsonMessageFlowTransformer[Event, ChatMessage]
+
+  implicit val writesEvent: Writes[Event] = {
+    case chatMessage: ChatMessage => implicitly[Writes[ChatMessage]].writes(chatMessage)
+    case Pong => implicitly[Writes[Pong.type]].writes(Pong)
+  }
+
+  implicit val messageFlowTransformer: MessageFlowTransformer[Event, Event] =
+    MessageFlowTransformer.jsonMessageFlowTransformer[Event, Event]
 }
 
 case class Login(user: String) extends Event
@@ -57,4 +64,9 @@ object ChatMessage {
     case incomingMessage: IncomingMessage => Json.toJson(incomingMessage)
     case outgoingMessage: OutgoingMessage => Json.toJson(outgoingMessage)
   }
+}
+
+case object Ping extends Event
+case object Pong extends Event {
+  implicit val writesPong: Writes[Pong.type] = (_: Pong.type) => Json.obj("EventType" -> "Pong")
 }

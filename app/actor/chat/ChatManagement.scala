@@ -6,7 +6,7 @@ import models.chat.{IncomingMessage, OutgoingMessage}
 import scala.collection.mutable
 
 trait ChatManagement { this: Actor =>
-  val sessions: mutable.Map[String, ActorRef]
+  def sessions: mutable.Map[String, ActorRef]
   val client: ActorRef
 
   protected def chatManagement: Receive = {

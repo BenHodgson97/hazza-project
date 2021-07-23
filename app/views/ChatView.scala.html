@@ -4,17 +4,25 @@
 
 @main("TEMP - CHAT") {
 
-  <div id="chats">
-    @for(chatName <- chatNames){
-      <div class="chat">
-        <h4>@chatName</h4>
-        <div id=@{chatName+"-messages"}>
-        </div>
-        <input type="text" id=@{chatName+"-submit"} class="chat-submit">
+  @for(i <- 1 to 100) {
+    <p>
+      @{"hello"*i}
+    </p>
+  }
 
+  <section id="chats">
+    @for(chatName <- chatNames){
+      <div class="closed-chat-container">
+        <button class="open-button" onclick=toggleForm("@{chatName+"-chat"}")>@chatName</button>
+
+        <div id=@{chatName+"-chat"} class="chat-popup">
+          <div id=@{chatName+"-messages"} class="messages">
+          </div>
+          <input id=@{chatName+"-input"} placeholder="Type message.." required>
+        </div>
       </div>
     }
-  </div>
+  </section>
 
   <script id="chat" src=@routes.Assets.versioned("javascripts/chat.js").url
           type="text/javascript"

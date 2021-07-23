@@ -3,14 +3,9 @@ package actor.chat
 import akka.actor.Actor
 
 trait ChatServer extends Actor {
+  def receive: Receive = sessionManagement orElse chatManagement orElse keepAlive
 
-  // actor message handler
-  def receive: Receive = sessionManagement orElse chatManagement
-
-  // abstract methods to be defined somewhere else
   protected def chatManagement: Receive
   protected def sessionManagement: Receive
-
+  protected def keepAlive: Receive
 }
-
-

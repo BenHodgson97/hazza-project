@@ -7,12 +7,11 @@ import scala.collection.mutable
 
 trait SessionManagement { this: Actor =>
 
-  val sessions: mutable.Map[String, ActorRef]
+  def sessions: mutable.Map[String, ActorRef]
   val client: ActorRef
 
   protected def sessionManagement: Receive = {
     case Login(username) =>
-      println("LOGIN" + username)
       sessions += (username -> client)
 
     case Logout(username) =>
