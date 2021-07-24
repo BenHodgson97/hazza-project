@@ -37,11 +37,13 @@ function insertMessage(name, message) {
     console.log('not null');
     console.log(chat);
     chat.insertAdjacentHTML('beforeend', '<p class="received-message">' + message + '</p>');
-    chat.scrollTop = incomingChat.scrollHeight;
+    chat.scrollTop = chat.scrollHeight;
   } else {
     console.log(chat);
-    let html = '<div class="closed-chat-container"><button class="open-button" onclick=toggleForm("'+ name + '-chat")>'+ name + '</button><div id="' + name + '-chat" class="chat-popup"><div id="' + name + '-messages" class="messages"></div><input id="' + name +'-input" placeholder="Type message.." required></div></div>';
+    let popupId = name + '-chat'
+    let html = '<div class="closed-chat-container"><button class="open-button" onclick=toggleForm("'+ name + '-chat")>'+ name + '</button><div id="' + popupId + '" class="chat-popup"><div id="' + name + '-messages" class="messages"></div><input id="' + name +'-input" placeholder="Type message.." required></div></div>';
     document.getElementById("chats").insertAdjacentHTML('afterbegin', html);
+    setupEventListener([document.getElementById(popupId)]);
     insertMessage(name, message);
   }
 }

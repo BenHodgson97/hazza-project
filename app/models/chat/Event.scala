@@ -4,6 +4,7 @@ import play.api.libs.json._
 import play.api.mvc.WebSocket.MessageFlowTransformer
 
 sealed trait Event
+sealed trait OutgoingEvent extends Event
 object Event {
   implicit val readsEvent: Reads[Event] = (json: JsValue) => {
     (json \ "EventType").as[String] match {
@@ -15,13 +16,13 @@ object Event {
     }
   }
 
-  implicit val writesEvent: Writes[Event] = {
+  implicit val writesEvent: Writes[OutgoingEvent] = {
     case chatMessage: ChatMessage => implicitly[Writes[ChatMessage]].writes(chatMessage)
     case Pong => implicitly[Writes[Pong.type]].writes(Pong)
   }
 
-  implicit val messageFlowTransformer: MessageFlowTransformer[Event, Event] =
-    MessageFlowTransformer.jsonMessageFlowTransformer[Event, Event]
+  implicit val messageFlowTransformer: MessageFlowTransformer[Event, OutgoingEvent] =
+    MessageFlowTransformer.jsonMessageFlowTransformer[Event, OutgoingEvent]
 }
 
 case class Login(user: String) extends Event
@@ -34,7 +35,7 @@ object Logout {
   implicit val readsLogout: Reads[Logout] = Json.reads[Logout]
 }
 
-sealed trait ChatMessage extends Event {
+sealed trait ChatMessage extends OutgoingEvent {
   val from: String
   val to: String
   val message: String
@@ -67,6 +68,6 @@ object ChatMessage {
 }
 
 case object Ping extends Event
-case object Pong extends Event {
+case object Pong extends OutgoingEvent {
   implicit val writesPong: Writes[Pong.type] = (_: Pong.type) => Json.obj("EventType" -> "Pong")
 }

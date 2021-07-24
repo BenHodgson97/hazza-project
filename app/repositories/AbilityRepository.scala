@@ -5,7 +5,6 @@ import models.Ability
 import play.api.libs.json.{JsObject, Json, OWrites}
 import play.modules.reactivemongo.ReactiveMongoApi
 import reactivemongo.api.bson.collection.BSONCollection
-import reactivemongo.play.json.compat._
 import reactivemongo.play.json.compat.json2bson.{toDocumentReader, toDocumentWriter}
 
 import scala.concurrent.{ExecutionContext, Future}

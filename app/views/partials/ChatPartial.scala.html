@@ -1,0 +1,23 @@
+@import repositories.ChatRepository
+@this(chatRepository: ChatRepository)
+
+@()(implicit request: AuthenticatedRequest[_])
+
+<section id="chats">
+  @for(chatName <- chatRepository.getSessionNames(request.username)){
+    <div class="closed-chat-container">
+      <button class="open-button" onclick=toggleForm("@{chatName+"-chat"}")>@chatName</button>
+
+      <div id=@{chatName+"-chat"} class="chat-popup">
+        <div id=@{chatName+"-messages"} class="messages">
+        </div>
+        <input id=@{chatName+"-input"} placeholder="Type message.." required>
+      </div>
+    </div>
+  }
+</section>
+
+<script id="chat" src=@routes.Assets.versioned("javascripts/chat.js").url
+        type="text/javascript"
+        chat-url=@controllers.routes.ChatController.chatSocket.webSocketURL()
+        username=@request.username></script>

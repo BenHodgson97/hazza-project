@@ -4,10 +4,9 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /ability-list               controllers.AbilityController.index()
+GET     /ability-list               controllers.AbilityController.index(name: Option[String])
 
-GET     /chat-single                controllers.ChatController.view(name: String)
-GET     /chat-single-socket         controllers.ChatController.chatSocket
+GET     /chat-socket                controllers.ChatController.chatSocket
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
