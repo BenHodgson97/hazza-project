@@ -2,6 +2,7 @@ package controllers
 
 import com.google.inject.{Inject, Singleton}
 import models.Spell
+import models.request.AuthenticatedRequest
 import play.api.mvc._
 import repositories.AbilityRepository
 import views.html.AbilityListView
@@ -27,7 +28,8 @@ class AbilityController @Inject()(
    * a path of `/`.
    */
 
-  def index() = Action.async { implicit request: Request[AnyContent] =>
+  def index(username: Option[String]): Action[AnyContent] = Action.async { request: Request[AnyContent] =>
+    implicit val authenticatedRequest: AuthenticatedRequest[AnyContent] = new AuthenticatedRequest[AnyContent](request, username.getOrElse("default"))
     abilityRepository.getAbilityListItems.map {
       abilities =>
         Ok(abilityListView(abilities))
