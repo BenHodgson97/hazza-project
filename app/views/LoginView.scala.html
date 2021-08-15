@@ -1,0 +1,13 @@
+@import helper.CSRF
+
+@this(main: MainTemplate)
+@()(implicit request: AuthenticatedRequest[_])
+
+@main("Login") {
+  <form method="post" action="/login">
+    @CSRF.formField
+    <label for="username">Username: </label>
+    <input type="text" id="username" name="username">
+    <input type="submit" value="Login">
+  </form>
+}

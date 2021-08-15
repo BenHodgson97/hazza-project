@@ -4,7 +4,10 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /ability-list               controllers.AbilityController.index(name: Option[String])
+GET     /ability-list               controllers.AbilityController.index
+
+GET     /login                      controllers.AuthController.onPageLoad
+POST    /login                      controllers.AuthController.onSubmit
 
 GET     /chat-socket                controllers.ChatController.chatSocket
 
