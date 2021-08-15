@@ -1,5 +1,6 @@
 package controllers
 
+import actions.AuthAction
 import com.google.inject.{Inject, Singleton}
 import models.Spell
 import models.request.AuthenticatedRequest
@@ -17,7 +18,8 @@ import scala.concurrent.ExecutionContext
 class AbilityController @Inject()(
                                   val controllerComponents: ControllerComponents,
                                   abilityRepository: AbilityRepository,
-                                  abilityListView: AbilityListView
+                                  abilityListView: AbilityListView,
+                                  authAction: AuthAction
                                 )(implicit executionContext: ExecutionContext) extends BaseController {
 
   /**
@@ -28,8 +30,7 @@ class AbilityController @Inject()(
    * a path of `/`.
    */
 
-  def index(username: Option[String]): Action[AnyContent] = Action.async { request: Request[AnyContent] =>
-    implicit val authenticatedRequest: AuthenticatedRequest[AnyContent] = new AuthenticatedRequest[AnyContent](request, username.getOrElse("default"))
+  def index: Action[AnyContent] = authAction.async {implicit request: AuthenticatedRequest[AnyContent] =>
     abilityRepository.getAbilityListItems.map {
       abilities =>
         Ok(abilityListView(abilities))
