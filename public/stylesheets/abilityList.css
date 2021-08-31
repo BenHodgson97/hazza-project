@@ -1,0 +1,105 @@
+.ability {
+    width: 75%;
+    border: 1px solid black;
+    margin: 50px;
+    background-color: #ffe6b3;
+}
+
+.name {
+    display: inline-block;
+    width: 90%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+}
+
+.rank {
+    border-left: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    box-sizing: border-box;
+    width: 5%;
+    margin: 0px;
+    height: 100%;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.spell-header-1 {
+    background-color: #269900;
+}
+
+.spell-header-2 {
+    background-color: #2db300;
+}
+
+.upgrade-header {
+    background-color: #809fff;
+    border-top: 1px solid black
+}
+
+.special-header-1 {
+    background-color: #b30000;
+}
+
+.special-header-2 {
+    background-color: #cc0000;
+}
+
+.header-1 {
+    font-family: 'Calligraffitti', cursive;
+    font-size: 20pt;
+    color: #ffd199;
+    width: 95%;
+    padding-left: 5%;
+    position: relative;
+    cursor: pointer;
+}
+
+.header-2 {
+    font-family: 'Calligraffitti', cursive;
+    font-size: 16pt;
+    font-weight: bold;
+    color: #ffd199;
+    display: flex;
+    justify-content: flex-start;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.header-2 > p {
+    margin: 0px;
+    width: 33%;
+    padding-left: 7px;
+}
+
+.cost {
+    text-align: right;
+    padding-right: 3px;
+    font-weight: bold;
+}
+
+.description {
+    text-align: center;
+    margin-top: 25px;
+    font-family: 'Calligraffitti', cursive;
+    font-size: 14pt;
+}
+
+.special .description {
+    padding-bottom: 15px;
+}
+
+.collapsible {
+    display: none;
+}
+
+.upgrade-collapsible {
+    border-top: 1px solid black;
+}
+
+.border-right {
+    border-right: 1px solid black
+}
