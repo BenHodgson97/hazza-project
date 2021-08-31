@@ -1,53 +1,65 @@
 @this(main: MainTemplate)
-@(abilities: Seq[Ability])(implicit request: AuthenticatedRequest[_])
+@(spellsAndUpgrades: Seq[SpellAndUpgrades], specials: Seq[Special])(implicit request: AuthenticatedRequest[_])
 
 @main("Ability List") {
   <h1>Ability List</h1>
-  <div>
-      @abilities.map {
-        case spell: Spell => {
-          <div class="spell ability">
-            <div class="spell-header-1 header-1">
-              <h2 class="name">@spell.name</h2>
-              <p class="rank">@spell.rank</p>
-            </div>
-            <div class="collapsible">
-              <div class="spell-header-2 header-2">
-                <p>Skill : @spell.skill.mkString("/")</p>
-                <p>Spell Type: @spell.spellType.mkString</p>
-                <p>Group: @spell.group</p>
-              </div>
-
-              <p class="description">@spell.description</p>
-
-              <p class="spell-cost">Cost: @spell.cost xp</p>
-            </div>
+    @spellsAndUpgrades.map {
+      case SpellAndUpgrades(spell, upgrades) => {
+        <div class="ability">
+          <div class="spell-header-1 header-1">
+            <h2 class="name">@spell.name</h2>
+            <p class="rank">@spell.rank</p>
           </div>
-        }
-
-        case upgrade: Upgrade => {
-          <h2>@upgrade.name</h2>
-          <p>@upgrade.spellId</p>
-          <p>@upgrade.description</p>
-        }
-
-        case special: Special => {
-          <div class="special ability">
-            <div class="special-header-1 header-1">
-              <h2 class="name">@special.name</h2>
-              <p class="rank">@special.rank</p>
+          <div class="collapsible">
+            <div class="spell-header-2 header-2">
+              <p class="border-right">Skill : @spell.skill.mkString("/")</p>
+              <p class="border-right">Spell Type: @spell.spellType.mkString</p>
+              <p>Group: @spell.group</p>
             </div>
-            <div class="collapsible">
-              <div class="special-header-2 header-2">
-                <p>Trigger: @special.activePassive</p>
-                <p>Group: @special.group</p>
-                <p>Cost: @special.cost xp</p>
+
+            <p class="description">@spell.description</p>
+
+            <p class="cost">Cost: @spell.cost xp</p>
+
+            @upgrades.map { upgrade =>
+              <div>
+                <div class="upgrade-header header-1">
+                  <h2 class="name">@upgrade.name</h2>
+                  <p class="rank">@upgrade.rank</p>
+                </div>
+                <div class="upgrade-collapsible collapsible">
+                  <p class="description">@upgrade.description</p>
+
+                  <p class="cost">Cost: @upgrade.cost xp</p>
+                </div>
               </div>
-              <p class="description">@special.description</p>
-            </div>
+            }
           </div>
-        }
+        </div>
+
+
+
       }
+    }
+
+    @specials.map { special =>
+      <div class="ability">
+        <div class="special-header-1 header-1">
+          <h2 class="name">@special.name</h2>
+          <p class="rank">@special.rank</p>
+        </div>
+        <div class="collapsible">
+          <div class="special-header-2 header-2">
+            <p class="border-right">Trigger: @special.activePassive</p>
+            <p class="border-right"></p>
+            <p>Group: @special.group</p>
+          </div>
+          <p class="description">@special.description</p>
+
+          <p class="cost">Cost: @special.cost xp</p>
+        </div>
+      </div>
+    }
   </div>
 
   <script src=@routes.Assets.versioned("javascripts/abilityList.js").url type="text/javascript"></script>

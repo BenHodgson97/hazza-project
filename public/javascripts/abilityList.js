@@ -1,11 +1,11 @@
-let abilities = document.querySelectorAll('div.ability');
-console.log(abilities)
-abilities.forEach(function(element){
-    let header = element.getElementsByClassName("header-1")[0];
-    let collapsible = element.getElementsByClassName("collapsible")[0];
-    console.log(header)
+let collapsibles = document.querySelectorAll('.collapsible');
+console.log(collapsibles)
+
+collapsibles.forEach(function(element){
+    let abilityWrapper = element.parentElement
+    let header = abilityWrapper.getElementsByClassName("header-1")[0];
     header.addEventListener("click", function(event){
-        toggle(collapsible);
+        toggle(element);
     });
 });
 
