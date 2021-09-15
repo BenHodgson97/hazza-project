@@ -1,0 +1,11 @@
+@import models.dice.Symbol
+
+@this(main: MainTemplate)
+@(result: Seq[Symbol], finalResult: Seq[Symbol])(implicit request: AuthenticatedRequest[_])
+
+@main("Dice Roller") {
+  <h1>Dice Roller</h1>
+
+  <p>@result.toString</p>
+  <p>@finalResult.toString</p>
+}
