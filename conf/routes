@@ -7,6 +7,7 @@
 GET     /ability-list               controllers.AbilityController.index
 
 GET     /dice-roller                controllers.DiceRollerController.onPageLoad
+GET     /dice-roller-socket         controllers.DiceRollerController.diceRollerSocket
 
 GET     /login                      controllers.AuthController.onPageLoad
 POST    /login                      controllers.AuthController.onSubmit

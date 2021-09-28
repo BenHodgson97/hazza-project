@@ -3,7 +3,7 @@ package actions
 import com.google.inject.{ImplementedBy, Inject}
 import models.request.AuthenticatedRequest
 import play.api.mvc.Results.Redirect
-import play.api.mvc.{ActionBuilder, ActionRefiner, AnyContent, BodyParser, BodyParsers, Request, Result}
+import play.api.mvc.{ActionBuilder, ActionRefiner, AnyContent, BodyParsers, Request, Result}
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -12,7 +12,7 @@ class AuthActionImplementation @Inject()(val executionContext: ExecutionContext,
   override protected def refine[A](request: Request[A]): Future[Either[Result, AuthenticatedRequest[A]]] = {
     Future.successful(
       request.session.get("username").fold[Either[Result, AuthenticatedRequest[A]]](
-        Left(Redirect(controllers.routes.AuthController.onPageLoad))
+        Left(Redirect(controllers.routes.AuthController.onPageLoad).addingToSession(("redirectLocation", request.path))(request))
       )(username => Right(AuthenticatedRequest(request, username)))
     )
   }

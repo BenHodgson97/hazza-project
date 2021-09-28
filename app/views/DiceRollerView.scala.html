@@ -6,6 +6,58 @@
 @main("Dice Roller") {
   <h1>Dice Roller</h1>
 
-  <p>@result.toString</p>
-  <p>@finalResult.toString</p>
+  <div class="dice-roller-main">
+    <div class="dice-to-roll">
+      <div class="good-dice">
+        <div class="all-yellow-dice">
+          @for(i <- 1 to 5) {
+            <div class="yellow-proficiency-to-roll unselected-dice dice"></div>
+          }
+        </div>
+
+        <div class="all-green-dice">
+          @for(i <- 1 to 5) {
+            <div class="green-ability-to-roll unselected-dice dice"></div>
+          }
+        </div>
+
+        <div class="all-blue-dice">
+          @for(i <- 1 to 5) {
+            <div class="blue-boost-to-roll unselected-dice dice"></div>
+          }
+        </div>
+      </div>
+
+      <div class="bad-dice">
+        <div class="all-red-dice">
+          @for(i <- 1 to 5) {
+            <div class="red-challenge-to-roll unselected-dice dice"></div>
+          }
+        </div>
+
+        <div class="all-purple-dice">
+          @for(i <- 1 to 5) {
+            <div class="purple-difficulty-to-roll unselected-dice dice"></div>
+          }
+        </div>
+
+        <div class="all-black-dice">
+          @for(i <- 1 to 5) {
+            <div class="black-setback-to-roll unselected-dice dice"></div>
+          }
+        </div>
+      </div>
+    </div>
+<!--    <div class="chosen-dice">-->
+<!--      <div class="good-dice"></div>-->
+<!--      <div class="bad-dice"></div>-->
+<!--    </div>-->
+<!--    <div class="outcome-and-button">-->
+<!--      <div class="outcome"></div>-->
+<!--      <div class="roll-button"></div>-->
+<!--    </div>-->
+  </div>
+
+  <script src=@routes.Assets.versioned("javascripts/diceRoller.js").url type="text/javascript"></script>
+
 }

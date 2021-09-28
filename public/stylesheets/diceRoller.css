@@ -1,0 +1,81 @@
+.dice-roller-main {
+    background-color: #ffe6b3;
+    display: inline-block;
+    height: 666px;
+    margin-left: 40px;
+    padding: 30px 5% 5% 5%;
+}
+
+.dice-to-roll {
+    border: 1px solid black;
+    width: auto;
+    height: auto;
+    padding: 10px;
+}
+
+.dice {
+    width: 85px;
+    height: 85px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.green-ability-to-roll {
+    background-image: url("/assets/images/dice/greenability.png");
+}
+
+.unselected-dice {
+    filter: opacity(60%);
+}
+
+.all-green-dice {
+    display: inline-flex;
+    padding-right: 50px;
+}
+
+.yellow-proficiency-to-roll {
+    background-image: url("/assets/images/dice/yellowproficiency.png");
+}
+
+.all-yellow-dice {
+    display: inline-flex;
+    padding-right: 50px;
+}
+
+.blue-boost-to-roll {
+    background-image: url("/assets/images/dice/blueboost.png");
+}
+
+.all-blue-dice {
+    display: inline-flex;
+}
+
+.red-challenge-to-roll {
+    background-image: url("/assets/images/dice/redchallenge.png");
+}
+
+.all-red-dice {
+    display: inline-flex;
+    padding-right: 50px;
+}
+
+.purple-difficulty-to-roll {
+    background-image: url("/assets/images/dice/purpledifficulty.png");
+}
+
+.all-purple-dice {
+    display: inline-flex;
+    padding-right: 50px;
+}
+
+.black-setback-to-roll {
+    background-image: url("/assets/images/dice/blacksetback.png");
+}
+
+.all-black-dice {
+    display: inline-flex;
+}
+
+.good-dice {
+    padding-top
+}
