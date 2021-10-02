@@ -7,7 +7,7 @@ dice.forEach(function(dice){
 
         let dieColour = diceClassNames.substr(0, diceClassNames.indexOf("-"))
         let actualAmount = Array.prototype.indexOf.call(dice.parentNode.children, dice)
-        let json = '{"die": "' + dieColour + '", "amount": ' + actualAmount + '}'
+        let json = '{"EventType": "DiceUpdate", "die": "' + dieColour + '", "amount": ' + actualAmount + '}'
         connection.send(json)
     });
 });
@@ -61,3 +61,8 @@ connection.onmessage = function(event) {
     let diceColourDiv = document.querySelector(diceColourDivClass)
     clickDice(diceColourDiv.children[amount])
 }
+
+connection.onopen = function(event) {
+    setInterval(function(){connection.send('{"EventType":"Ping"}')}, 60000)
+}
+

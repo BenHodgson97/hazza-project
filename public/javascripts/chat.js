@@ -5,7 +5,7 @@ let user = script.getAttribute('username')
 let chatUrl = script.getAttribute('chat-url');
 let chatConnection = new WebSocket(chatUrl);
 
-function keepAlive() {
+function keepChatAlive() {
   chatConnection.send('{ "EventType": "Ping"}');
 }
 
@@ -15,7 +15,7 @@ chatConnection.onopen = function() {
   console.log('Login user: ' + user);
   let json = '{ "EventType": "Login", "user": "' + user + '" }';
   chatConnection.send(json);
-  setInterval(keepAlive, 60000);
+  setInterval(keepChatAlive, 60000);
 };
 
 chatConnection.onerror = function(error) {

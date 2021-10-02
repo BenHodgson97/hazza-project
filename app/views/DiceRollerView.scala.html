@@ -1,7 +1,10 @@
 @import models.dice.Symbol
+@import models.dice.Die
+@import models.dice.Die._
+@import scala.collection.mutable
 
 @this(main: MainTemplate)
-@(result: Seq[Symbol], finalResult: Seq[Symbol])(implicit request: AuthenticatedRequest[_])
+@(result: Seq[Symbol], finalResult: Seq[Symbol], memory: mutable.Map[Die, Int])(implicit request: AuthenticatedRequest[_])
 
 @main("Dice Roller") {
   <h1>Dice Roller</h1>
@@ -11,19 +14,19 @@
       <div class="good-dice">
         <div class="all-yellow-dice">
           @for(i <- 1 to 5) {
-            <div class="yellow-proficiency-to-roll unselected-dice dice"></div>
+            <div class="yellow-proficiency-to-roll dice @if(i > memory(YellowProficiency)){unselected-dice}"></div>
           }
         </div>
 
         <div class="all-green-dice">
           @for(i <- 1 to 5) {
-            <div class="green-ability-to-roll unselected-dice dice"></div>
+            <div class="green-ability-to-roll dice @if(i > memory(GreenAbility)){unselected-dice}"></div>
           }
         </div>
 
         <div class="all-blue-dice">
           @for(i <- 1 to 5) {
-            <div class="blue-boost-to-roll unselected-dice dice"></div>
+            <div class="blue-boost-to-roll dice @if(i > memory(BlueBoost)){unselected-dice}"></div>
           }
         </div>
       </div>
@@ -31,19 +34,19 @@
       <div class="bad-dice">
         <div class="all-red-dice">
           @for(i <- 1 to 5) {
-            <div class="red-challenge-to-roll unselected-dice dice"></div>
+            <div class="red-challenge-to-roll dice @if(i > memory(RedChallenge)){unselected-dice}"></div>
           }
         </div>
 
         <div class="all-purple-dice">
           @for(i <- 1 to 5) {
-            <div class="purple-difficulty-to-roll unselected-dice dice"></div>
+            <div class="purple-difficulty-to-roll dice @if(i > memory(PurpleDifficulty)){unselected-dice}"></div>
           }
         </div>
 
         <div class="all-black-dice">
           @for(i <- 1 to 5) {
-            <div class="black-setback-to-roll unselected-dice dice"></div>
+            <div class="black-setback-to-roll dice @if(i > memory(BlackSetback)){unselected-dice}"></div>
           }
         </div>
       </div>
