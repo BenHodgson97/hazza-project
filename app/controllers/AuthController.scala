@@ -21,7 +21,7 @@ class AuthController @Inject()(val controllerComponents: ControllerComponents,
       implicit val authenticatedRequest: AuthenticatedRequest[AnyContent] = new AuthenticatedRequest[AnyContent](request, "default")
       loginForm.form.bindFromRequest().fold(
         hasErrors => BadRequest(loginView()), //TODO Add error messages for bad requests
-        login => Redirect(request.session.get("redirectLocation").getOrElse(controllers.routes.AbilityController.index.url)).withNewSession.addingToSession("username" -> login.username)
+        login => Redirect(request.session.get("redirectLocation").getOrElse(controllers.routes.DiceRollerController.onPageLoad.url)).withNewSession.addingToSession("username" -> login.username)
       )
   }
 }
