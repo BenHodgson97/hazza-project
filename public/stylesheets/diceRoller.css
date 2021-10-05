@@ -8,8 +8,16 @@
 
 .dice-to-roll {
     border: 1px solid black;
-    width: auto;
+    width: 98.5%;
     height: auto;
+    padding: 10px;
+}
+
+.chosen-dice {
+    display: inline-flex;
+    border: 1px solid black;
+    margin-top: 25px;
+    width: 98.5%;
     padding: 10px;
 }
 
@@ -33,6 +41,42 @@
     padding-right: 50px;
 }
 
+.green-background {
+    background-image: url("/assets/images/dice/abilitybg.png");
+    height: 57px;
+    width: 71px;
+    padding-top: 33px;
+    padding-left: 24px;
+}
+
+.green-background.double-symbol {
+    padding-top: 23px;
+    padding-left: 32px;
+    height: 67px;
+    width: 63px;
+}
+
+.green-background .success.single-symbol {
+    height: 50px;
+    width: 50px;
+}
+
+.green-background .success.double-symbol {
+    height: 32px;
+    width: 32px;
+}
+
+.green-background .advantage.single-symbol {
+    height: 50px;
+    width: 50px;
+}
+
+.green-background .advantage.double-symbol {
+    height: 30px;
+    width: 30px;
+    margin-left: 2px;
+}
+
 .yellow-proficiency-to-roll {
     background-image: url("/assets/images/dice/yellowproficiency.png");
 }
@@ -42,12 +86,77 @@
     padding-right: 50px;
 }
 
+.yellow-background {
+    background-image: url("/assets/images/dice/proficiencybg.png");
+    height: 75px;
+    width: 79px;
+    padding-top: 20px;
+    padding-left: 16px;
+}
+
+.yellow-background .success.single-symbol {
+    height: 64px;
+    width: 64px;
+}
+
+.yellow-background .success.double-symbol {
+    height: 32px;
+    width: 32px;
+    margin-left: 15.5px;
+}
+
+.yellow-background .advantage.single-symbol {
+    height: 64px;
+    width: 64px;
+}
+
+.yellow-background .advantage.double-symbol {
+    height: 32px;
+    width: 32px;
+    margin-left: 16px;
+}
+
+.yellow-background .triumph.single-symbol {
+    height: 64px;
+    width: 64px;
+}
+
 .blue-boost-to-roll {
     background-image: url("/assets/images/dice/blueboost.png");
 }
 
 .all-blue-dice {
     display: inline-flex;
+}
+
+.blue-background {
+    background-image: url("/assets/images/dice/boostbg.png");
+    height: 79px;
+    width: 80px;
+    padding-top: 16px;
+    padding-left: 15px;
+}
+
+.blue-background .success.single-symbol {
+    height: 64px;
+    width: 64px;
+}
+
+.blue-background .success.double-symbol {
+    height: 32px;
+    width: 32px;
+    margin-left: 15px;
+}
+
+.blue-background .advantage.single-symbol {
+    height: 64px;
+    width: 64px;
+}
+
+.blue-background .advantage.double-symbol {
+    height: 34px;
+    width: 34px;
+    margin-left: 14px;
 }
 
 .red-challenge-to-roll {
@@ -59,6 +168,41 @@
     padding-right: 50px;
 }
 
+.red-background {
+    background-image: url("/assets/images/dice/challengebg.png");
+    height: 78px;
+    width: 79px;
+    padding-top: 17px;
+    padding-left: 16px;
+}
+
+.red-background .failure.single-symbol {
+     height: 64px;
+     width: 64px;
+ }
+
+ .red-background .failure.double-symbol {
+     height: 32px;
+     width: 32px;
+     margin-left: 15px;
+ }
+
+ .red-background .threat.single-symbol {
+     height: 64px;
+     width: 64px;
+ }
+
+ .red-background .threat.double-symbol {
+     height: 33px;
+     width: 33px;
+     margin-left: 14.5px;
+ }
+
+ .red-background .despair {
+     height: 64px;
+     width: 64px;
+ }
+
 .purple-difficulty-to-roll {
     background-image: url("/assets/images/dice/purpledifficulty.png");
 }
@@ -66,6 +210,37 @@
 .all-purple-dice {
     display: inline-flex;
     padding-right: 50px;
+}
+
+.purple-background {
+    background-image: url("/assets/images/dice/difficultybg.png");
+    height: 76px;
+    width: 81px;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.purple-background .failure.single-symbol {
+    height: 64px;
+    width: 64px;
+}
+
+.purple-background .failure.double-symbol {
+    height: 32px;
+    width: 32px;
+    margin-left: 16px;
+}
+
+.purple-background .threat.single-symbol {
+    height: 50px;
+    width: 50px;
+    margin-left: 7px;
+}
+
+.purple-background .threat.double-symbol {
+    height: 32px;
+    width: 32px;
+    margin-left: 16px;
 }
 
 .black-setback-to-roll {
@@ -76,6 +251,63 @@
     display: inline-flex;
 }
 
-.good-dice {
-    padding-top
+.black-background {
+    background-image: url("/assets/images/dice/setbackbg.png");
+    height: 71px;
+    width: 79.5px;
+    padding-top: 20px;
+    padding-left: 15.5px;
 }
+
+.black-background .failure.single-symbol {
+    height: 64px;
+    width: 64px;
+}
+
+.black-background .failure.double-symbol {
+    height: 32px;
+    width: 32px;
+    margin-left: 16px;
+}
+
+.black-background .threat.single-symbol {
+    height: 64px;
+    width: 64px
+}
+
+.black-background .threat.double-symbol {
+    height: 32px;
+    width: 32px;
+    margin-left: 16px;
+}
+
+.success {
+    background-image: url("/assets/images/dice/success.png");
+    background-size: contain;
+}
+
+.failure {
+    background-image: url("/assets/images/dice/failure.png");
+    background-size: contain;
+}
+
+.advantage {
+    background-image: url("/assets/images/dice/advantage.png");
+    background-size: contain;
+}
+
+.threat {
+    background-image: url("/assets/images/dice/threat.png");
+    background-size: contain;
+}
+
+.triumph {
+    background-image: url("/assets/images/dice/triumph.png");
+    background-size: contain
+}
+
+.despair {
+    background-image: url("/assets/images/dice/despair.png");
+    background-size: contain;
+}
+
