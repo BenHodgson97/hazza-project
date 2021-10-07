@@ -52,34 +52,40 @@
       </div>
     </div>
     <div class="chosen-dice">
-      <div class="yellow-background double-symbol">
-        <div class="success double-symbol"></div>
-        <div class="advantage double-symbol"></div>
+      <div class="chosen-yellow chosen">
+        @for(i <- 1 to 5) {
+          <div class="yellow-background @if(i > memory(YellowProficiency)){unchosen-dice}"></div>
+        }
       </div>
 
-      <div class="green-background double-symbol">
-        <div class="success double-symbol"></div>
-        <div class="advantage double-symbol"></div>
+      <div class="chosen-green chosen">
+        @for(i <- 1 to 5) {
+          <div class="green-background @if(i > memory(GreenAbility)){unchosen-dice}"></div>
+        }
       </div>
 
-      <div class="blue-background double-symbol">
-        <div class="success double-symbol"></div>
-        <div class="advantage double-symbol"></div>
+      <div class="chosen-blue chosen">
+        @for(i <- 1 to 5) {
+          <div class="blue-background @if(i > memory(BlueBoost)){unchosen-dice}"></div>
+        }
       </div>
 
-      <div class="red-background">
-        <div class="failure double-symbol"></div>
-        <div class="threat double-symbol"></div>
+      <div class="chosen-red chosen">
+        @for(i <- 1 to 5) {
+          <div class="red-background @if(i > memory(RedChallenge)){unchosen-dice}"></div>
+        }
       </div>
 
-      <div class="purple-background">
-        <div class="failure double-symbol"></div>
-        <div class="threat double-symbol"></div>
+      <div class="chosen-purple chosen">
+        @for(i <- 1 to 5) {
+          <div class="purple-background @if(i > memory(PurpleDifficulty)){unchosen-dice}"></div>
+        }
       </div>
 
-      <div class="black-background">
-        <div class="failure double-symbol"></div>
-        <div class="threat double-symbol"></div>
+      <div class="chosen-black chosen">
+        @for(i <- 1 to 5) {
+          <div class="black-background @if(i > memory(BlackSetback)){unchosen-dice}"></div>
+        }
       </div>
     </div>
 

@@ -14,11 +14,19 @@
 }
 
 .chosen-dice {
-    display: inline-flex;
     border: 1px solid black;
     margin-top: 25px;
+    height: 95px;
     width: 98.5%;
     padding: 10px;
+}
+
+.chosen-dice .chosen {
+    display: inline-flex;
+}
+
+.unchosen-dice {
+    display: none;
 }
 
 .dice {

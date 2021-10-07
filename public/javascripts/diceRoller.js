@@ -1,49 +1,61 @@
 let dice = document.querySelectorAll('.dice');
+let chosenDice = document.querySelector('.chosen-dice')
+
+function getColour(dice) {
+    return dice.className.substr(0, dice.className.indexOf("-"))
+}
+
+function getIndex(dice) {
+    return Array.prototype.indexOf.call(dice.parentNode.children, dice)
+}
 
 dice.forEach(function(dice){
     dice.addEventListener("click", function(event){
         clickDice(dice)
-        let diceClassNames = dice.className
 
-        let dieColour = diceClassNames.substr(0, diceClassNames.indexOf("-"))
-        let actualAmount = Array.prototype.indexOf.call(dice.parentNode.children, dice)
+        let dieColour = getColour(dice)
+        let actualAmount = getIndex(dice)
         let json = '{"EventType": "DiceUpdate", "die": "' + dieColour + '", "amount": ' + actualAmount + '}'
         connection.send(json)
     });
 });
 
 function clickDice(dice) {
-    if(isNotSelected(dice)) {
-        lightUpDice(dice);
+    if(isNotSelected(dice, "unselected-dice")) {
+        lightUpDice(dice, 'unselected-dice');
+
+        let chosenClass = ".chosen-" + getColour(dice)
+        let unchosenDice = chosenDice.querySelector(chosenClass).children[getIndex(dice)]
+        lightUpDice(unchosenDice, 'unchosen-dice')
     } else {
         clickSelected(dice);
     }
 }
 
-function lightUpDice(dice) {
-    dice.classList.remove('unselected-dice');
+function lightUpDice(dice, classToGo) {
+    dice.classList.remove(classToGo);
 
-    if(dice.previousElementSibling != null && isNotSelected(dice.previousElementSibling)) {
-        lightUpDice(dice.previousElementSibling);
+    if(dice.previousElementSibling != null && isNotSelected(dice.previousElementSibling, classToGo)) {
+        lightUpDice(dice.previousElementSibling, classToGo);
     }
 }
 
-function isNotSelected(dice) {
-    return dice.classList.contains("unselected-dice");
+function isNotSelected(dice, classToGo) {
+    return dice.classList.contains(classToGo);
 }
 
 function clickSelected(dice) {
     let nextDice = dice.nextElementSibling
-    if(nextDice != null && !isNotSelected(nextDice)) {
+    if(nextDice != null && !isNotSelected(nextDice, "unselected-dice")) {
         nextDice.classList.add("unselected-dice");
-        if(nextDice.nextElementSibling != null && !isNotSelected(nextDice.nextElementSibling)) {
+        if(nextDice.nextElementSibling != null && !isNotSelected(nextDice.nextElementSibling, "unselected-dice")) {
             clickSelected(nextDice);
         }
 
     } else {
         dice.classList.add("unselected-dice");
         let previousDice = dice.previousElementSibling
-        if(previousDice != null && !isNotSelected(previousDice)) {
+        if(previousDice != null && !isNotSelected(previousDice, "unselected-dice")) {
             clickSelected(previousDice);
         }
     }
