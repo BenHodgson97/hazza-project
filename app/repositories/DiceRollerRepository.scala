@@ -18,5 +18,4 @@ class DiceRollerRepository {
     PurpleDifficulty  -> 0,
     BlackSetback      -> 0
   )
-  currentDiceState(YellowProficiency)
 }

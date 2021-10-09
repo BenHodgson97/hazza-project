@@ -299,6 +299,10 @@
     background-size: contain;
 }
 
+.failure.outcome {
+    background-color: black;
+}
+
 .advantage {
     background-image: url("/assets/images/dice/advantage.png");
     background-size: contain;
@@ -309,9 +313,17 @@
     background-size: contain;
 }
 
+.threat.outcome {
+    background-color: black;
+}
+
 .triumph {
     background-image: url("/assets/images/dice/triumph.png");
     background-size: contain
+}
+
+.triumph.outcome {
+    background-color: #FFE800;
 }
 
 .despair {
@@ -319,3 +331,38 @@
     background-size: contain;
 }
 
+.despair.outcome {
+    background-color: #E31837;
+}
+
+.outcome {
+    height: 64px;
+    width: 64px;
+    margin-right: 10px;
+}
+
+.outcome-symbols {
+    display: inline-flex;
+    border: 1px solid black;
+    width: 80%;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.outcome-and-button {
+    display: inline-flex;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.roll-button {
+    margin-left: 10px;
+    width: 15%;
+    display: inline-flex;
+}
+
+.actual-roll-button {
+    width: 100%;
+    height: 86px;
+    margin-left: 50px;
+}

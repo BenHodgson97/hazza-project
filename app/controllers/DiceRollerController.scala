@@ -6,7 +6,7 @@ import akka.actor.{ActorSystem, Props}
 import akka.stream.Materializer
 import com.google.inject.{Inject, Singleton}
 import models.dice.Die._
-import models.dice.{DiceUpdate, Die, Event, Symbol}
+import models.dice.{DiceUpdate, Die, Event, OutgoingEvent, Symbol}
 import models.request.AuthenticatedRequest
 import play.api.libs.streams.ActorFlow
 import play.api.mvc._
@@ -35,7 +35,7 @@ class DiceRollerController @Inject()(
     Ok(diceRollerView(result, finalResult, diceRollerRepository.currentDiceState))
   }
 
-  def diceRollerSocket: WebSocket = WebSocket.accept[Event, DiceUpdate] {
+  def diceRollerSocket: WebSocket = WebSocket.accept[Event, OutgoingEvent] {
     _ => ActorFlow.actorRef{
       clientActor =>
         Props(diceRollerActorProvider.createActor(clientActor))
