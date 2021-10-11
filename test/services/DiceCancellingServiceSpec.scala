@@ -59,7 +59,20 @@ class DiceCancellingServiceSpec extends PlaySpec with GuiceOneAppPerSuite with I
       }
     }
 
-    "work out advantageThreatCount" is pending
+    "work out advantageThreatCount" when {
+      "all advantages and no threats" in {
+        diceCancellingService.cancelSymbols(Seq(Advantage, Advantage)) mustEqual Seq(Advantage, Advantage)
+      }
+      "all threats and no advantages" in {
+        diceCancellingService.cancelSymbols(Seq(Threat, Threat)) mustEqual Seq(Threat, Threat)
+      }
+      "more advantages than threats" in {
+        diceCancellingService.cancelSymbols(Seq(Advantage, Advantage, Threat)) mustEqual Seq(Advantage)
+      }
+      "more threats than failures" in {
+        diceCancellingService.cancelSymbols(Seq(Threat, Threat, Advantage)) mustEqual Seq(Threat)
+      }
+    }
 
   }
 }

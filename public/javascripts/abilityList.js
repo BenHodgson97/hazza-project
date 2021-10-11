@@ -1,5 +1,4 @@
 let collapsibles = document.querySelectorAll('.collapsible');
-console.log(collapsibles)
 
 collapsibles.forEach(function(element){
     let abilityWrapper = element.parentElement

@@ -1,11 +1,102 @@
 @import models.dice.Symbol
+@import models.dice.Die
+@import models.dice.Die._
+@import scala.collection.mutable
 
 @this(main: MainTemplate)
-@(result: Seq[Symbol], finalResult: Seq[Symbol])(implicit request: AuthenticatedRequest[_])
+@(result: Seq[Symbol], finalResult: Seq[Symbol], memory: mutable.Map[Die, Int])(implicit request: AuthenticatedRequest[_])
 
 @main("Dice Roller") {
   <h1>Dice Roller</h1>
 
-  <p>@result.toString</p>
-  <p>@finalResult.toString</p>
+  <div class="dice-roller-main">
+    <div class="dice-to-roll">
+      <div class="good-dice">
+        <div class="all-yellow-dice">
+          @for(i <- 1 to 5) {
+            <div class="yellow-proficiency-to-roll dice @if(i > memory(YellowProficiency)){unselected-dice}"></div>
+          }
+        </div>
+
+        <div class="all-green-dice">
+          @for(i <- 1 to 5) {
+            <div class="green-ability-to-roll dice @if(i > memory(GreenAbility)){unselected-dice}"></div>
+          }
+        </div>
+
+        <div class="all-blue-dice">
+          @for(i <- 1 to 5) {
+            <div class="blue-boost-to-roll dice @if(i > memory(BlueBoost)){unselected-dice}"></div>
+          }
+        </div>
+      </div>
+
+      <div class="bad-dice">
+        <div class="all-red-dice">
+          @for(i <- 1 to 5) {
+            <div class="red-challenge-to-roll dice @if(i > memory(RedChallenge)){unselected-dice}"></div>
+          }
+        </div>
+
+        <div class="all-purple-dice">
+          @for(i <- 1 to 5) {
+            <div class="purple-difficulty-to-roll dice @if(i > memory(PurpleDifficulty)){unselected-dice}"></div>
+          }
+        </div>
+
+        <div class="all-black-dice">
+          @for(i <- 1 to 5) {
+            <div class="black-setback-to-roll dice @if(i > memory(BlackSetback)){unselected-dice}"></div>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="chosen-dice">
+      <div class="chosen-yellow chosen">
+        @for(i <- 1 to 5) {
+          <div class="yellow-background @if(i > memory(YellowProficiency)){unchosen-dice}"></div>
+        }
+      </div>
+
+      <div class="chosen-green chosen">
+        @for(i <- 1 to 5) {
+          <div class="green-background @if(i > memory(GreenAbility)){unchosen-dice}"></div>
+        }
+      </div>
+
+      <div class="chosen-blue chosen">
+        @for(i <- 1 to 5) {
+          <div class="blue-background @if(i > memory(BlueBoost)){unchosen-dice}"></div>
+        }
+      </div>
+
+      <div class="chosen-red chosen">
+        @for(i <- 1 to 5) {
+          <div class="red-background @if(i > memory(RedChallenge)){unchosen-dice}"></div>
+        }
+      </div>
+
+      <div class="chosen-purple chosen">
+        @for(i <- 1 to 5) {
+          <div class="purple-background @if(i > memory(PurpleDifficulty)){unchosen-dice}"></div>
+        }
+      </div>
+
+      <div class="chosen-black chosen">
+        @for(i <- 1 to 5) {
+          <div class="black-background @if(i > memory(BlackSetback)){unchosen-dice}"></div>
+        }
+      </div>
+    </div>
+    <div class="outcome-and-button">
+      <div class="outcome-symbols"></div>
+      <div class="roll-button">
+        <button class="actual-roll-button" onclick="rollDice()">Roll</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src=@routes.Assets.versioned("javascripts/diceRoller.js").url type="text/javascript"></script>
+
 }

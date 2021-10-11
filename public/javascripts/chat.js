@@ -2,27 +2,27 @@ let script = document.getElementById('chat');
 
 let user = script.getAttribute('username')
 
-let url = script.getAttribute('chat-url');
-let connection = new WebSocket(url);
+let chatUrl = script.getAttribute('chat-url');
+let chatConnection = new WebSocket(chatUrl);
 
-function keepAlive() {
-  connection.send('{ "EventType": "Ping"}');
+function keepChatAlive() {
+  chatConnection.send('{ "EventType": "Ping"}');
 }
 
-connection.onopen = function() {
+chatConnection.onopen = function() {
   let chats = document.querySelectorAll('.chat-popup');
   setupEventListener(chats);
   console.log('Login user: ' + user);
   let json = '{ "EventType": "Login", "user": "' + user + '" }';
-  connection.send(json);
-  setInterval(keepAlive, 60000);
+  chatConnection.send(json);
+  setInterval(keepChatAlive, 60000);
 };
 
-connection.onerror = function(error) {
+chatConnection.onerror = function(error) {
   console.log('WebSocket Error ', error);
 };
 
-connection.onmessage = function(event) {
+chatConnection.onmessage = function(event) {
   let obj = JSON.parse(event.data);
   if(obj.EventType == "OutgoingMessage") {
     insertMessage(obj.from, obj.message)
@@ -73,7 +73,7 @@ function sendMessage(element, messages) {
     messages.scrollTop = messages.scrollHeight;
     let to = element.getAttribute('id').split('-')[0];
     json = '{ "EventType": "ChatMessage", "to": "' + to + '", "from": "' + user + '", "message":"' + text + '" }';
-    connection.send(json);
+    chatConnection.send(json);
   }
 };
 
