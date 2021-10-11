@@ -1,5 +1,6 @@
 @import repositories.ChatRepository
-@this(chatRepository: ChatRepository)
+@import config.AppConfig
+@this(chatRepository: ChatRepository, appConfig: AppConfig)
 
 @()(implicit request: AuthenticatedRequest[_])
 
@@ -19,5 +20,5 @@
 
 <script id="chat" src=@routes.Assets.versioned("javascripts/chat.js").url
         type="text/javascript"
-        chat-url="@controllers.routes.ChatController.chatSocket.webSocketURL(request.secure)"
+        chat-url="@controllers.routes.ChatController.chatSocket.webSocketURL(appConfig.isSecure)"
         username="@request.username"></script>

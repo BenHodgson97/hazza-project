@@ -2,8 +2,9 @@
 @import models.dice.Die
 @import models.dice.Die._
 @import scala.collection.mutable
+@import config.AppConfig
 
-@this(main: MainTemplate)
+@this(main: MainTemplate, appConfig: AppConfig)
 @(result: Seq[Symbol], finalResult: Seq[Symbol], memory: mutable.Map[Die, Int])(implicit request: AuthenticatedRequest[_])
 
 @main("Dice Roller") {
@@ -100,6 +101,6 @@
   <script id="diceRoller"
           src=@routes.Assets.versioned("javascripts/diceRoller.js").url
           type="text/javascript"
-          dice-url="@controllers.routes.DiceRollerController.diceRollerSocket.webSocketURL(request.secure)"></script>
+          dice-url="@controllers.routes.DiceRollerController.diceRollerSocket.webSocketURL(appConfig.isSecure)"></script>
 
 }
