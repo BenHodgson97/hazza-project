@@ -97,6 +97,9 @@
   </div>
 
 
-  <script src=@routes.Assets.versioned("javascripts/diceRoller.js").url type="text/javascript"></script>
+  <script id="diceRoller"
+          src=@routes.Assets.versioned("javascripts/diceRoller.js").url
+          type="text/javascript"
+          dice-url="@controllers.routes.DiceRollerController.diceRollerSocket.webSocketURL(request.secure)"></script>
 
 }

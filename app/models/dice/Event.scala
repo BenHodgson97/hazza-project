@@ -32,7 +32,7 @@ case class RollResult(symbols: Seq[Symbol], rolledDice: Map[Die, Seq[Seq[Symbol]
 
 object RollResult {
   implicit val mapWrites: Writes[Map[Die, Seq[Seq[Symbol]]]] = {
-    map => println(map)
+    map =>
       map.foldLeft(JsObject.empty) {
         case (acc, (die, results)) =>
           val resultsArray: Seq[JsValue] = results.map(result => JsArray(result.map(symbol => Json.toJson(symbol))))

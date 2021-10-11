@@ -19,5 +19,5 @@
 
 <script id="chat" src=@routes.Assets.versioned("javascripts/chat.js").url
         type="text/javascript"
-        chat-url=@controllers.routes.ChatController.chatSocket.webSocketURL()
-        username=@request.username></script>
+        chat-url="@controllers.routes.ChatController.chatSocket.webSocketURL(request.secure)"
+        username="@request.username"></script>

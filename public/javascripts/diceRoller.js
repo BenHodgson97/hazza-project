@@ -70,7 +70,7 @@ function rollDice() {
     }
 }
 
-let url = "ws://localhost:9000/dice-roller-socket";
+let url = document.getElementById('diceRoller').getAttribute('dice-url');
 let connection = new WebSocket(url);
 
 connection.onmessage = function(event) {
