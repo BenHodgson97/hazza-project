@@ -9,7 +9,7 @@ import scala.collection.mutable
 class ChatClient(
                   val client: ActorRef,
                   chatRepository: ChatRepository
-                ) extends ChatManagement with SessionManagement with ChatServer with KeepAlive {
+                ) extends ChatManagement with SessionManagement with ChatServer {
   val logger: Logger = Logger(this.getClass)
 
   override def sessions: mutable.Map[String, ActorRef] = chatRepository.sessions
