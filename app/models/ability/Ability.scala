@@ -1,4 +1,4 @@
-package models
+package models.ability
 
 import play.api.libs.json.{JsValue, Json, Reads}
 
@@ -17,17 +17,17 @@ object Ability {
 }
 
 case class Spell(
-                   id: Int,
-                   name: String,
-                   rank: Int,
-                   opposing: Boolean,
-                   spellType: Seq[SpellType],
-                   skill: Seq[Skill],
-                   cost: Int,
-                   description: String,
-                   group: Group,
-                   treePosition: Int
-                 ) extends Ability
+                  id: Int,
+                  name: String,
+                  rank: Int,
+                  opposing: Boolean,
+                  spellType: Seq[SpellType],
+                  skill: Seq[Skill],
+                  cost: Int,
+                  description: String,
+                  group: Group,
+                  treePosition: Int
+                ) extends Ability
 
 object Spell {
   implicit val spellsReads: Reads[Spell] = Json.reads[Spell]
@@ -48,13 +48,13 @@ object Upgrade {
 }
 
 case class Stat(
-               name: String,
-               rank: Int,
-               cost: Int,
-               upgradeAmount: Int,
-               upgradeStat: UpgradeStat,
-               group: Group,
-               treePosition: Int,
+                 name: String,
+                 rank: Int,
+                 cost: Int,
+                 upgradeAmount: Int,
+                 upgradeStat: UpgradeStat,
+                 group: Group,
+                 treePosition: Int,
                ) extends Ability
 
 object Stat {
@@ -71,6 +71,6 @@ case class Special(
                     treePosition: Int
                   ) extends Ability
 
-object Special{
+object Special {
   implicit val specialReads: Reads[Special] = Json.reads[Special]
 }

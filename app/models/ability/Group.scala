@@ -1,4 +1,4 @@
-package models
+package models.ability
 
 import play.api.libs.json.Reads
 

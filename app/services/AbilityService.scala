@@ -1,7 +1,7 @@
 package services
 
 import com.google.inject.Inject
-import models.{Ability, Special, Spell, SpellAndUpgrades, Upgrade}
+import models.ability._
 import repositories.AbilityRepository
 
 import scala.concurrent.{ExecutionContext, Future}
