@@ -1,7 +1,7 @@
 package repositories
 
 import com.google.inject.{Inject, Singleton}
-import models.Ability
+import models.ability.Ability
 import play.api.libs.json.{JsObject, Json, OWrites}
 import play.modules.reactivemongo.ReactiveMongoApi
 import reactivemongo.api.bson.collection.BSONCollection
