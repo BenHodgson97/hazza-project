@@ -34,12 +34,9 @@ chatConnection.onmessage = function(event) {
 function insertMessage(name, message) {
   let chat = document.getElementById(name + '-messages');
   if(chat != null) {
-    console.log('not null');
-    console.log(chat);
     chat.insertAdjacentHTML('beforeend', '<p class="received-message">' + message + '</p>');
     chat.scrollTop = chat.scrollHeight;
   } else {
-    console.log(chat);
     let popupId = name + '-chat'
     let html = '<div class="closed-chat-container"><button class="open-button" onclick=toggleForm("'+ name + '-chat")>'+ name + '</button><div id="' + popupId + '" class="chat-popup"><div id="' + name + '-messages" class="messages"></div><input id="' + name +'-input" placeholder="Type message.." required></div></div>';
     document.getElementById("chats").insertAdjacentHTML('afterbegin', html);
@@ -54,8 +51,6 @@ function setupEventListener(elements) {
   elements.forEach(function(element) {
     let input = element.getElementsByTagName("input")[0];
     let messages = element.getElementsByClassName("messages")[0];
-    console.log(input);
-    console.log(messages);
     element.addEventListener("keyup", function(event) {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {

@@ -3,7 +3,6 @@ package actor.dice
 import akka.actor.{Actor, ActorRef}
 import com.google.inject.Inject
 import models.dice.{DiceUpdate, Die, Roll, RollResult}
-import play.api.libs.json.Json
 import repositories.DiceRollerRepository
 import services.DiceCancellingService
 
