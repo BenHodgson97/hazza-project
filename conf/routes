@@ -6,6 +6,8 @@
 # An example controller showing a sample home page
 GET     /ability-list               controllers.AbilityController.index
 
+GET     /skill-tree                 controllers.SkillTreeController.onPageLoad
+
 GET     /dice-roller                controllers.DiceRollerController.onPageLoad
 GET     /dice-roller-socket         controllers.DiceRollerController.diceRollerSocket
 
