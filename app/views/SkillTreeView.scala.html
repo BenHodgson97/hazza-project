@@ -1,9 +1,9 @@
 @import models.ability._
 
 @this(main: MainTemplate)
-@()(implicit request: AuthenticatedRequest[_])
+@(abilities: Seq[Ability])(implicit request: AuthenticatedRequest[_])
 
-@main("Skill Tree") {
+@main("Skill Tree", Seq("skillTree")) {
   <h1>Skill Tree</h1>
-  <p>Look at my bitchin' Skill Tree view</p>
+  <p>@abilities.head.toString</p>
 }
