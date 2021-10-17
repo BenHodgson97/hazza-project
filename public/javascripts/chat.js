@@ -15,7 +15,7 @@ chatConnection.onopen = function() {
   console.log('Login user: ' + user);
   let json = '{ "EventType": "Login", "user": "' + user + '" }';
   chatConnection.send(json);
-  setInterval(keepChatAlive, 60000);
+  setInterval(keepChatAlive, 54000);
 };
 
 chatConnection.onerror = function(error) {
