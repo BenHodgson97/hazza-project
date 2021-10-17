@@ -3,7 +3,7 @@
 @this(main: MainTemplate)
 @(spellsAndUpgrades: Seq[SpellAndUpgrades], specials: Seq[Special])(implicit request: AuthenticatedRequest[_])
 
-@main("Ability List") {
+@main("Ability List", Seq("abilityList")) {
   <h1>Ability List</h1>
     @spellsAndUpgrades.map {
       case SpellAndUpgrades(spell, upgrades) => {
