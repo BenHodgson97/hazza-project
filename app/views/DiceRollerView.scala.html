@@ -7,7 +7,7 @@
 @this(main: MainTemplate, appConfig: AppConfig)
 @(result: Seq[Symbol], finalResult: Seq[Symbol], memory: mutable.Map[Die, Int])(implicit request: AuthenticatedRequest[_])
 
-@main("Dice Roller") {
+@main("Dice Roller", Seq("diceRoller")) {
   <h1>Dice Roller</h1>
 
   <div class="dice-roller-main">
