@@ -123,6 +123,6 @@ connection.onmessage = function(event) {
 }
 
 connection.onopen = function(event) {
-    setInterval(function(){connection.send('{"EventType": "Ping"}')}, 60000)
+    setInterval(function(){connection.send('{"EventType": "Ping"}')}, 54000)
 }
 
