@@ -2,7 +2,14 @@ package models.ability
 
 import play.api.libs.json.{JsValue, Json, Reads}
 
-sealed trait Ability
+import scala.math.Integral.Implicits.infixIntegralOps
+
+sealed trait Ability {
+  val treePosition: Int
+  private val (quotient, remainder) = (treePosition - 1) /% 4
+  val gridColumn: Int = remainder + 1
+  val gridRow: Int = quotient + 1
+}
 
 object Ability {
 
@@ -55,7 +62,9 @@ case class Stat(
                  upgradeStat: UpgradeStat,
                  group: Group,
                  treePosition: Int,
-               ) extends Ability
+               ) extends Ability {
+  def description: String = s"+$upgradeAmount to $upgradeStat"
+}
 
 object Stat {
   implicit val statReads: Reads[Stat] = Json.reads[Stat]

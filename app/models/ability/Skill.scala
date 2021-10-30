@@ -18,6 +18,7 @@ object Skill {
   case object Perception extends Skill
   case object Deception extends Skill
   case object Coercion extends Skill
+  case object Discipline extends Skill
 
   implicit val skillReads: Reads[Skill] = implicitly[Reads[String]].map {
     case "Charm" => Charm
@@ -33,5 +34,6 @@ object Skill {
     case "Perception" => Perception
     case "Deception" => Deception
     case "Coercion" => Coercion
+    case "Discipline" => Discipline
   }
 }

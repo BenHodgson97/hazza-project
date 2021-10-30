@@ -1,9 +1,91 @@
 @import models.ability._
 
 @this(main: MainTemplate)
-@(abilities: Seq[Ability])(implicit request: AuthenticatedRequest[_])
+@(abilities: Seq[Ability], groupName: String)(implicit request: AuthenticatedRequest[_])
 
-@main("Skill Tree", Seq("skillTree")) {
-  <h1>Skill Tree</h1>
-  <p>@abilities.head.toString</p>
+@main(s"Skill Tree - $groupName", Seq("skillTree")) {
+  <h1>Skill Tree - @groupName</h1>
+  <div class="menu-main">
+    <div class="menu-content">
+      @Group.allGroups.map { group =>
+        <div class="group @if(group.toString == groupName){group-selected}">
+          <a href="@controllers.routes.SkillTreeController.onPageLoad(group).url">@group.toString</a>
+        </div>
+      }
+    </div>
+    <button onclick="openCloseMenu()" class="menu-button">Trees</button>
+  </div>
+  <div class="background">
+    @abilities.map {
+      case spell: Spell => {
+        <div class="spell ability" style="grid-column: @spell.gridColumn; grid-row: @spell.gridRow">
+          <div class="header">
+            <div class="title-and-box">
+              <div class="selected-box"></div>
+              <div class="title">@spell.name</div>
+            </div>
+            <div class="rank">@spell.rank</div>
+          </div>
+          <div class="body">@spell.description</div>
+          <div class="footer">
+            <div class="skill">Skill:  @spell.skill.mkString("/")</div>
+            <div class="cost">Cost:   @spell.cost XP</div>
+          </div>
+        </div>
+      }
+
+      case upgrade: Upgrade => {
+        <div class="upgrade ability" style="grid-column: @upgrade.gridColumn; grid-row: @upgrade.gridRow">
+          <div class="header">
+            <div class="title-and-box">
+              <div class="selected-box"></div>
+              <div class="title">@upgrade.name</div>
+            </div>
+            <div class="rank">@upgrade.rank</div>
+          </div>
+          <div class="body">@upgrade.description</div>
+          <div class="footer">
+            <div class="skill"></div>
+            <div class="cost">Cost:   @upgrade.cost XP</div>
+          </div>
+        </div>
+      }
+
+      case stat: Stat => {
+        <div class="stat ability"  style="grid-column: @stat.gridColumn; grid-row: @stat.gridRow">
+          <div class="header">
+            <div class="title-and-box">
+              <div class="selected-box"></div>
+              <div class="title">@stat.name</div>
+            </div>
+            <div class="rank">@stat.rank</div>
+          </div>
+          <div class="body">@stat.description</div>
+          <div class="footer">
+            <div class="skill"></div>
+            <div class="cost">Cost:   @stat.cost XP</div>
+          </div>
+        </div>
+      }
+
+      case special: Special => {
+        <div class="special ability" style="grid-column: @special.gridColumn; grid-row: @special.gridRow">
+          <div class="header">
+            <div class="title-and-box">
+              <div class="selected-box"></div>
+              <div class="title">@special.name</div>
+            </div>
+            <div class="rank">@special.rank</div>
+          </div>
+          <div class="body">@special.description</div>
+          <div class="footer">
+            <div class="skill">@special.activePassive</div>
+            <div class="cost">Cost: @special.cost XP</div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+
+  <script src=@routes.Assets.versioned("javascripts/skillTree.js").url></script>
 }
