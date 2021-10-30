@@ -2,10 +2,18 @@ body {
     background-color: #005566;
 }
 
-h1 {
+h1, h2 {
     font-family: 'Calligraffitti', cursive;
-    font-size: 20pt;
     color: #ffd199;
+}
+
+h1 {
+    font-size: 20pt;
+}
+
+h2 {
+    font-size: 16pt;
+    text-align: center
 }
 
 

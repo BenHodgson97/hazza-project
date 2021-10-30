@@ -14,6 +14,7 @@ libraryDependencies ++= Seq(
 
 // Adds additional packages into Twirl
 TwirlKeys.templateImports += "models.request.AuthenticatedRequest"
+routesImport += "models.ability.Group"
 
 // Adds additional packages into conf/routes
 // play.sbt.routes.RoutesKeys.routesImport += "com.example.binders._"

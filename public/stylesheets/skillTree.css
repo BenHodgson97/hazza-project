@@ -1,0 +1,172 @@
+.menu-main {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+.menu-content {
+    display: none;
+    width: 300px;
+    height: 100%;
+    border: 2px solid black;
+    background-color: #ffe6b3;
+}
+
+.menu-content a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.menu-content.open {
+    display: inline-block;
+}
+
+.group {
+    font-size: 20pt;
+    font-family: 'Calligraffitti', cursive;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 18px;
+}
+
+.group-selected {
+    border: 2px solid black;
+}
+
+.menu-button {
+    border: 1px solid black;
+    background-color: #a2a4a6;
+    display: inline-block;
+    transform: rotate(270deg);
+    position: absolute;
+    font-size: 15pt;
+    top: 50%;
+    left: -15px;
+}
+
+.menu-button.open {
+    position: absolute;
+    font-size: 15pt;
+    top: 50%;
+    left: 284px;
+}
+
+.background {
+    background-color: #ffe6b3;
+    padding: 20px;
+    display: grid;
+    padding-left: 50px;
+}
+
+.ability {
+    height: 120px;
+    width: 360px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: 'Calibri', sans-serif;
+}
+
+.spell {
+    background-color: #6AA84F;
+}
+
+.upgrade {
+    background-color: #6D9EEB;
+}
+
+.stat {
+    background-color: #F1C232;
+}
+
+.special {
+    background-color: #CC4125;
+}
+
+.header {
+    height: 36px;
+    border: 1px solid black;
+    display: inline-flex;
+    font-family: 'Calligraffitti', cursive;
+    font-size: 18pt;
+    color: #ffd199;
+}
+
+.stat .header {
+    color: #000000;
+}
+
+.title-and-box {
+    width: 304px;
+    height: 33px;
+    display: inline-flex;
+}
+
+.selected-box {
+    width: 29px;
+    height: 29px;
+    border: 1px solid black;
+    margin-top: 2px;
+    margin-left: 2px;
+    background-color: #FFFFFF;
+}
+
+.title {
+    padding-left: 10px;
+}
+
+.rank {
+    width: 53px;
+    height: 100%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    text-align: center;
+}
+
+.body {
+    height: 54px;
+    border: 1px solid black;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 6px;
+    overflow: auto;
+}
+
+.spell .body {
+    background-color: #93C47D;
+}
+
+.upgrade .body {
+    background-color: #A4C2F4;
+}
+
+.stat .body {
+    background-color: #FFD966;
+}
+
+.special .body {
+    background-color: #DD7E6B;
+}
+
+.footer {
+    height: 20px;
+    border: 1px solid black;
+    display: inline-flex;
+    font-size: 11pt;
+}
+
+.skill {
+    width: 244px;
+    height: 20px;
+    padding-left: 10px;
+}
+
+.cost {
+    width: 93px;
+    height: 20px;
+    border-left: 1px solid black;
+    border-right: 1px;
+    padding-left: 10px;
+}
