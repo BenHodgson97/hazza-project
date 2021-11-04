@@ -15,7 +15,7 @@ class AbilityRepository @Inject()(reactiveMongoApi: ReactiveMongoApi)(implicit e
   implicit final val jsObjectWrites: OWrites[JsObject] =
     OWrites[JsObject](identity)
 
-  private def collection: Future[BSONCollection] = reactiveMongoApi.database.map {
+  def collection: Future[BSONCollection] = reactiveMongoApi.database.map {
     db => db.collection[BSONCollection]("Abilities")
   }
 

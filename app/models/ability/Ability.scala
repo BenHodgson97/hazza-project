@@ -24,7 +24,7 @@ object Ability {
 }
 
 case class Spell(
-                  id: Int,
+                  id: String,
                   name: String,
                   rank: Int,
                   opposing: Boolean,
@@ -41,6 +41,7 @@ object Spell {
 }
 
 case class Upgrade(
+                    id: String,
                     name: String,
                     spellId: Seq[Int],
                     rank: Int,
@@ -48,13 +49,15 @@ case class Upgrade(
                     description: String,
                     group: Group,
                     treePosition: Int
-                  ) extends Ability
-
+                  ) extends Ability {
+  val spellIdString: Seq[String] = spellId.map(i => s"spell$i")
+}
 object Upgrade {
   implicit val upgradeReads: Reads[Upgrade] = Json.reads[Upgrade]
 }
 
 case class Stat(
+                 id: String,
                  name: String,
                  rank: Int,
                  cost: Int,
@@ -71,6 +74,7 @@ object Stat {
 }
 
 case class Special(
+                    id: String,
                     name: String,
                     rank: Int,
                     cost: Int,

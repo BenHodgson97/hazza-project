@@ -9,4 +9,5 @@ target
 project/project
 *.sc
 .bsp
+mains/
 

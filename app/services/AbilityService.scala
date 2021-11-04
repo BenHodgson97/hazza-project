@@ -17,7 +17,7 @@ class AbilityService @Inject()(abilityRepository: AbilityRepository)(implicit ex
     }
 
     spellList.map { spell =>
-      val upgrades = upgradeList.filter(upgrade => upgrade.spellId.contains(spell.id))
+      val upgrades = upgradeList.filter(upgrade => upgrade.spellIdString.contains(spell.id))
 
       SpellAndUpgrades(spell, upgrades)
     }
