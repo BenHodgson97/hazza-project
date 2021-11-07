@@ -7,8 +7,8 @@ import play.api.mvc.{ActionBuilder, ActionRefiner, AnyContent, BodyParsers, Requ
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class AuthActionImplementation @Inject()(val executionContext: ExecutionContext,
-                                         val parser: BodyParsers.Default) extends AuthAction {
+class AuthActionImpl @Inject()(val executionContext: ExecutionContext,
+                               val parser: BodyParsers.Default) extends AuthAction {
   override protected def refine[A](request: Request[A]): Future[Either[Result, AuthenticatedRequest[A]]] = {
     Future.successful(
       request.session.get("username").fold[Either[Result, AuthenticatedRequest[A]]](
@@ -17,5 +17,5 @@ class AuthActionImplementation @Inject()(val executionContext: ExecutionContext,
     )
   }
 }
-@ImplementedBy(classOf[AuthActionImplementation])
+@ImplementedBy(classOf[AuthActionImpl])
 trait AuthAction extends ActionRefiner[Request, AuthenticatedRequest] with ActionBuilder[AuthenticatedRequest, AnyContent]
