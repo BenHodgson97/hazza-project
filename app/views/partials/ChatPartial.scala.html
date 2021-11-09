@@ -2,7 +2,7 @@
 @import config.AppConfig
 @this(chatRepository: ChatRepository, appConfig: AppConfig)
 
-@()(implicit request: AuthenticatedRequest[_])
+@()(implicit request: RequestWithName[_])
 
 <section id="chats">
   @for(chatName <- chatRepository.getSessionNames(request.username)){

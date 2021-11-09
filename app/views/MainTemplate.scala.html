@@ -6,7 +6,7 @@
  *@
 @import views.html.partials.ChatPartial
 @this(chatPartial: ChatPartial)
-@(title: String, cssToLoad: Seq[String] = Nil)(content: Html)(implicit request: AuthenticatedRequest[_])
+@(title: String, cssToLoad: Seq[String] = Nil)(content: Html)(implicit request: Request[_])
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,13 @@
     * the page content. *@
     @content
 
-    @chatPartial()
+    @request match {
+      case request: RequestWithName[_] => {
+        @chatPartial()(request)
+      }
+
+      case _ => {}
+    }
 
     <script src=@routes.Assets.versioned("javascripts/main.js").url type="text/javascript"></script>
   </body>

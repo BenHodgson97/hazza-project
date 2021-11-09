@@ -1,7 +1,7 @@
 @import models.ability._
 
 @this(main: MainTemplate)
-@(abilities: Seq[Ability], groupName: String)(implicit request: AuthenticatedRequest[_])
+@(abilities: Seq[Ability], groupName: String)(implicit request: AuthenticatedUserRequest[_])
 
 @main(s"Skill Tree - $groupName", Seq("skillTree")) {
   <h1>Skill Tree - @groupName</h1>

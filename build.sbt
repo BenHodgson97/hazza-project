@@ -13,7 +13,7 @@ libraryDependencies ++= Seq(
 )
 
 // Adds additional packages into Twirl
-TwirlKeys.templateImports += "models.request.AuthenticatedRequest"
+TwirlKeys.templateImports += "models.request._"
 routesImport += "models.ability.Group"
 
 // Adds additional packages into conf/routes
