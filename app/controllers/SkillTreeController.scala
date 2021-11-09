@@ -1,10 +1,10 @@
 package controllers
 
-import actions.AuthAction
+import actions.{AuthAction, GetUserDataAction}
 import com.google.inject.{Inject, Singleton}
 import models.ability.Group
 import models.ability.Group.Light
-import models.request.AuthenticatedRequest
+import models.request.AuthenticatedUserRequest
 import play.api.mvc._
 import repositories.AbilityRepository
 import views.html.SkillTreeView
@@ -16,17 +16,18 @@ class SkillTreeController @Inject()(
                                    val controllerComponents: ControllerComponents,
                                    skillTreeView: SkillTreeView,
                                    abilityRepository: AbilityRepository,
-                                   authAction: AuthAction
+                                   authAction: AuthAction,
+                                   getUserDataAction: GetUserDataAction
                                    )(implicit executionContext: ExecutionContext) extends BaseController {
 
-  def onPageLoad(group: Group): Action[AnyContent] = authAction.async { implicit request: AuthenticatedRequest[AnyContent] =>
+  def onPageLoad(group: Group): Action[AnyContent] = (authAction andThen getUserDataAction).async { implicit request: AuthenticatedUserRequest[AnyContent] =>
 
     abilityRepository.getAbilityByGroup(group).map {
       abilities => Ok(skillTreeView(abilities, group.toString))
     }
   }
 
-  def loadRoot: Action[AnyContent] = authAction { _ =>
+  def loadRoot: Action[AnyContent] = (authAction andThen getUserDataAction) { _ =>
     Redirect(controllers.routes.SkillTreeController.onPageLoad(Light))
   }
 }

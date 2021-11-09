@@ -1,7 +1,7 @@
 @import helper.CSRF
 
 @this(main: MainTemplate)
-@()(implicit request: AuthenticatedRequest[_])
+@()(implicit request: Request[_])
 
 @main("Login") {
   <form method="post" action="/login">
