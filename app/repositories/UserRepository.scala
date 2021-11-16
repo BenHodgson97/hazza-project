@@ -24,4 +24,22 @@ class UserRepository @Inject()(reactiveMongoApi: ReactiveMongoApi)(implicit exec
         collection.find(query).one[User]
     }
   }
+
+  def addAbilityToUser(username: String, abilityId: String) = {
+    collection.flatMap {
+      collection =>
+        val selector: JsObject = Json.obj("username" -> username)
+        val modifier: JsObject = Json.obj("$addToSet" -> Json.obj("skillsOwned" -> abilityId))
+        collection.update.one(selector, modifier)
+    }
+  }
+
+  def removeAbilityFromUser(username: String, abilityId: String) = {
+    collection.flatMap {
+      collection =>
+        val selector: JsObject = Json.obj("username" -> username)
+        val modifier: JsObject = Json.obj("$pull" -> Json.obj("skillsOwned" -> abilityId))
+        collection.update.one(selector, modifier)
+    }
+  }
 }
