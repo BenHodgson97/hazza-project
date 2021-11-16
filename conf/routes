@@ -4,18 +4,20 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /ability-list               controllers.AbilityController.index
+GET     /ability-list                           controllers.AbilityController.index
 
-GET     /skill-tree                 controllers.SkillTreeController.loadRoot
-GET     /skill-tree/:group          controllers.SkillTreeController.onPageLoad(group: Group)
+GET     /skill-tree                             controllers.SkillTreeController.loadRoot
+GET     /skill-tree/:group                      controllers.SkillTreeController.onPageLoad(group: Group)
+GET     /skill-tree/add/:username/:abilityId    controllers.SkillTreeController.addAbility(username: String, abilityId: String)
+GET     /skill-tree/remove/:username/:abilityId controllers.SkillTreeController.removeAbility(username: String, abilityId: String)
 
-GET     /dice-roller                controllers.DiceRollerController.onPageLoad
-GET     /dice-roller-socket         controllers.DiceRollerController.diceRollerSocket
+GET     /dice-roller                            controllers.DiceRollerController.onPageLoad
+GET     /dice-roller-socket                     controllers.DiceRollerController.diceRollerSocket
 
-GET     /login                      controllers.AuthController.onPageLoad
-POST    /login                      controllers.AuthController.onSubmit
+GET     /login                                  controllers.AuthController.onPageLoad
+POST    /login                                  controllers.AuthController.onSubmit
 
-GET     /chat-socket                controllers.ChatController.chatSocket
+GET     /chat-socket                            controllers.ChatController.chatSocket
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file                           controllers.Assets.versioned(path="/public", file: Asset)

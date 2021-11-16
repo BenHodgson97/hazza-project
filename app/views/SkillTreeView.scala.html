@@ -19,9 +19,9 @@
     @abilities.map {
       case spell: Spell => {
         <div class="spell ability" style="grid-column: @spell.gridColumn; grid-row: @spell.gridRow">
-          <div class="header">
+          <div class="header" abilityId="@spell.id">
             <div class="title-and-box">
-              <div class="selected-box"></div>
+              <div class="selected-box @if(!request.userData.skillsOwned.contains(spell.id)){unselected}"></div>
               <div class="title">@spell.name</div>
             </div>
             <div class="rank">@spell.rank</div>
@@ -36,9 +36,9 @@
 
       case upgrade: Upgrade => {
         <div class="upgrade ability" style="grid-column: @upgrade.gridColumn; grid-row: @upgrade.gridRow">
-          <div class="header">
+          <div class="header" abilityId="@upgrade.id">
             <div class="title-and-box">
-              <div class="selected-box"></div>
+              <div class="selected-box @if(!request.userData.skillsOwned.contains(upgrade.id)){unselected}"></div>
               <div class="title">@upgrade.name</div>
             </div>
             <div class="rank">@upgrade.rank</div>
@@ -53,9 +53,9 @@
 
       case stat: Stat => {
         <div class="stat ability"  style="grid-column: @stat.gridColumn; grid-row: @stat.gridRow">
-          <div class="header">
+          <div class="header" abilityId="@stat.id">
             <div class="title-and-box">
-              <div class="selected-box"></div>
+              <div class="selected-box @if(!request.userData.skillsOwned.contains(stat.id)){unselected}"></div>
               <div class="title">@stat.name</div>
             </div>
             <div class="rank">@stat.rank</div>
@@ -70,9 +70,9 @@
 
       case special: Special => {
         <div class="special ability" style="grid-column: @special.gridColumn; grid-row: @special.gridRow">
-          <div class="header">
+          <div class="header" abilityId="@special.id">
             <div class="title-and-box">
-              <div class="selected-box"></div>
+              <div class="selected-box @if(!request.userData.skillsOwned.contains(special.id)){unselected}"></div>
               <div class="title">@special.name</div>
             </div>
             <div class="rank">@special.rank</div>

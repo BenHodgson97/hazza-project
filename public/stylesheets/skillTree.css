@@ -110,6 +110,10 @@
     border: 1px solid black;
     margin-top: 2px;
     margin-left: 2px;
+    background-color: #000000
+}
+
+.unselected {
     background-color: #FFFFFF;
 }
 
