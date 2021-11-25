@@ -7,7 +7,7 @@ import play.api.data.Forms._
 class LoginForm {
   def form: Form[Login] = Form[Login](
     mapping(
-      "username" -> nonEmptyText
+      "username" -> nonEmptyText.transform[String](_.trim, identity)
     )(Login.apply)(Login.unapply)
   )
 }
