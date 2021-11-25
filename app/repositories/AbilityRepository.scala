@@ -41,7 +41,13 @@ class AbilityRepository @Inject()(reactiveMongoApi: ReactiveMongoApi)(implicit e
 
   def query(abilityQuery: AbilityQuery): Future[Seq[Ability]] = collection.flatMap {
     collection =>
-      val query = Json.obj("name" -> Json.obj("$regex" -> abilityQuery.searchToRegex, "$options" -> "i"))
+      val query = Json.obj(
+        "$or" -> Json.arr(
+          Json.obj("name" -> Json.obj("$regex" -> abilityQuery.searchToRegex, "$options" -> "i")),
+          Json.obj("abilityType" -> "Upgrade")
+        )
+      )
+
       collection.find(query).cursor[Ability]().collect[Seq]()
   }
 }
