@@ -2,6 +2,7 @@ package controllers
 
 import actions.AuthAction
 import com.google.inject.{Inject, Singleton}
+import forms.AbilityForm
 import models.request.AuthenticatedRequest
 import play.api.mvc._
 import services.AbilityService
@@ -15,7 +16,8 @@ class AbilityController @Inject()(
                                   val controllerComponents: ControllerComponents,
                                   abilityService: AbilityService,
                                   abilityListView: AbilityListView,
-                                  authAction: AuthAction
+                                  authAction: AuthAction,
+                                  abilityForm: AbilityForm
                                 )(implicit executionContext: ExecutionContext) extends BaseController {
 
   def index: Action[AnyContent] = authAction.async {implicit request: AuthenticatedRequest[AnyContent] =>
@@ -23,6 +25,24 @@ class AbilityController @Inject()(
       case (spellAndUpgrades, specials) =>
         Ok(abilityListView(spellAndUpgrades, specials))
     }
+  }
+
+  def onSubmit: Action[AnyContent] = authAction.async {
+    implicit request =>
+      abilityForm.form.bindFromRequest().fold (
+        hasErrors => {
+          abilityService.getAbilityListItems.map {
+            case (spellAndUpgrades, specials) =>
+              BadRequest(abilityListView(spellAndUpgrades, specials))
+          }
+        },
+        abilityQuery => {
+          abilityService.query(abilityQuery).map {
+            case (spellAndUpgrades, specials) =>
+              Ok(abilityListView(spellAndUpgrades, specials))
+          }
+        }
+      )
   }
 }
 

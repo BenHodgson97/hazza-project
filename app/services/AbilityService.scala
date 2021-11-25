@@ -1,6 +1,7 @@
 package services
 
 import com.google.inject.Inject
+import models.AbilityQuery
 import models.ability._
 import repositories.AbilityRepository
 
@@ -32,5 +33,9 @@ class AbilityService @Inject()(abilityRepository: AbilityRepository)(implicit ex
   def getAbilityListItems: Future[(Seq[SpellAndUpgrades], Seq[Special])] = abilityRepository.getAbilityListItems.map {
     abilities =>
       (attachUpgrades(abilities), collectSpecials(abilities))
+  }
+
+  def query(abilityQuery: AbilityQuery): Future[(Seq[SpellAndUpgrades], Seq[Special])] = abilityRepository.query(abilityQuery).map {
+    abilities => (attachUpgrades(abilities), collectSpecials(abilities))
   }
 }

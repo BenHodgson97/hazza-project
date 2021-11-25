@@ -1,6 +1,7 @@
 package repositories
 
 import com.google.inject.{Inject, Singleton}
+import models.AbilityQuery
 import models.ability.{Ability, Group}
 import play.api.libs.json.{JsObject, Json, OWrites}
 import play.modules.reactivemongo.ReactiveMongoApi
@@ -35,6 +36,12 @@ class AbilityRepository @Inject()(reactiveMongoApi: ReactiveMongoApi)(implicit e
   def getAbilityByGroup(group: Group): Future[Seq[Ability]] = collection.flatMap {
     collection =>
       val query = Json.obj("group" -> group.toString)
+      collection.find(query).cursor[Ability]().collect[Seq]()
+  }
+
+  def query(abilityQuery: AbilityQuery): Future[Seq[Ability]] = collection.flatMap {
+    collection =>
+      val query = Json.obj("name" -> Json.obj("$regex" -> abilityQuery.searchToRegex, "$options" -> "i"))
       collection.find(query).cursor[Ability]().collect[Seq]()
   }
 }
