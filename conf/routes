@@ -5,6 +5,7 @@
 
 # An example controller showing a sample home page
 GET     /ability-list                           controllers.AbilityController.index
+POST    /ability-list                           controllers.AbilityController.onSubmit
 
 GET     /skill-tree                             controllers.SkillTreeController.loadRoot
 GET     /skill-tree/:group                      controllers.SkillTreeController.onPageLoad(group: Group)

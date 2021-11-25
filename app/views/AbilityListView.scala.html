@@ -1,10 +1,19 @@
 @import models.ability._
+@import helper._
 
 @this(main: MainTemplate)
 @(spellsAndUpgrades: Seq[SpellAndUpgrades], specials: Seq[Special])(implicit request: AuthenticatedRequest[_])
 
 @main("Ability List", Seq("abilityList")) {
   <h1>Ability List</h1>
+    <div>
+      @form(controllers.routes.AbilityController.onSubmit) {
+        @CSRF.formField
+        <input name="search-bar" type="text" placeholder="Search...">
+        <button type="submit">&#128269</button>
+      }
+    </div>
+
     @spellsAndUpgrades.map {
       case SpellAndUpgrades(spell, upgrades) => {
         <div class="ability">
