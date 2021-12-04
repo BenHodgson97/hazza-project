@@ -109,3 +109,11 @@
   background-color: #ddd;
   outline: none;
 }
+
+.read {
+  display: None;
+}
+
+.unread {
+  font-weight: bold;
+}

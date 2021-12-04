@@ -7,7 +7,7 @@
 <section id="chats">
   @for(chatName <- chatRepository.getSessionNames(request.username)){
     <div class="closed-chat-container">
-      <button class="open-button" onclick=toggleForm("@{chatName+"-chat"}")>@chatName</button>
+      <button class="open-button" onclick=toggleForm("@{chatName+"-chat"}")><span class="read">&#8226;</span> @chatName</button>
 
       <div id=@{chatName+"-chat"} class="chat-popup">
         <div id=@{chatName+"-messages"} class="messages">

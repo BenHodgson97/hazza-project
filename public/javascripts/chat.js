@@ -34,6 +34,12 @@ chatConnection.onmessage = function(event) {
 function insertMessage(name, message) {
   let chat = document.getElementById(name + '-messages');
   if(chat != null) {
+    let container = chat.parentElement.parentElement
+    if(container.classList.contains("closed-chat-container")){
+      container.getElementsByTagName("span")[0].classList.remove("read")
+      container.getElementsByClassName("open-button")[0].classList.add("unread")
+    }
+
     chat.insertAdjacentHTML('beforeend', '<p class="received-message">' + message + '</p>');
     chat.scrollTop = chat.scrollHeight;
   } else {
@@ -82,6 +88,9 @@ function toggleForm(id) {
 }
 
 function openForm(element) {
+  let container = element.parentElement
+  container.getElementsByTagName("span")[0].classList.add("read")
+  container.getElementsByClassName("open-button")[0].classList.remove("unread")
   element.style.display = "block";
   element.parentElement.className = "open-chat-container";
 }
