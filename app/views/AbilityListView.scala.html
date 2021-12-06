@@ -11,6 +11,12 @@
         @CSRF.formField
         <input name="search-bar" type="text" placeholder="Search...">
         <button type="submit">&#128269</button>
+        <div>
+          @for(i <- 0 to (Group.allGroups.size - 1)){
+            <input type="checkbox" id="@Group.allGroups(i).toString" name=@{s"group-filter[$i]"} value="@Group.allGroups(i).toString">
+            <label for="@Group.allGroups(i).toString">@Group.allGroups(i).toString</label>
+          }
+        </div>
       }
     </div>
 

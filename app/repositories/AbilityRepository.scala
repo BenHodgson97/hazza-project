@@ -3,10 +3,11 @@ package repositories
 import com.google.inject.{Inject, Singleton}
 import models.AbilityQuery
 import models.ability.{Ability, Group}
-import play.api.libs.json.{JsObject, Json, OWrites}
+import play.api.libs.json.{JsObject, JsString, Json, OWrites}
 import play.modules.reactivemongo.ReactiveMongoApi
 import reactivemongo.api.bson.collection.BSONCollection
 import reactivemongo.play.json.compat.json2bson.{toDocumentReader, toDocumentWriter}
+import Json.toJsFieldJsValueWrapper
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -41,12 +42,22 @@ class AbilityRepository @Inject()(reactiveMongoApi: ReactiveMongoApi)(implicit e
 
   def query(abilityQuery: AbilityQuery): Future[Seq[Ability]] = collection.flatMap {
     collection =>
-      val query = Json.obj(
-        "$or" -> Json.arr(
-          Json.obj("name" -> Json.obj("$regex" -> abilityQuery.searchToRegex, "$options" -> "i")),
-          Json.obj("abilityType" -> "Upgrade")
-        )
+      val searchJson: Option[JsObject] = abilityQuery.searchToRegex.map(
+        search => Json.obj("name" -> Json.obj("$regex" -> search, "$options" -> "i"))
       )
+
+      val upgradeJson: Option[JsObject] = Some(Json.obj("abilityType" -> "Upgrade"))
+
+      val groupJson: Option[JsObject] = abilityQuery.groupFilter.map(
+        groups => Json.obj("group" -> Json.obj("$in" -> Json.arr(groups.map(group => toJsFieldJsValueWrapper(JsString(group.toString))):_*)))
+      )
+
+      val allJson: Seq[JsObject] = Seq(searchJson, upgradeJson, groupJson).flatten
+
+      val query = Json.obj(
+        "$or" -> Json.arr(allJson.map(json => toJsFieldJsValueWrapper(json)): _*)
+      )
+      println(query)
 
       collection.find(query).cursor[Ability]().collect[Seq]()
   }
