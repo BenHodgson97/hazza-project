@@ -15,6 +15,8 @@ GET     /skill-tree/remove/:username/:abilityId controllers.SkillTreeController.
 GET     /dice-roller                            controllers.DiceRollerController.onPageLoad
 GET     /dice-roller-socket                     controllers.DiceRollerController.diceRollerSocket
 
+GET     /character-sheet                        controllers.CharacterSheetController.onPageLoad
+
 GET     /login                                  controllers.AuthController.onPageLoad
 POST    /login                                  controllers.AuthController.onSubmit
 

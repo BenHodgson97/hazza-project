@@ -31,14 +31,12 @@ class AbilityController @Inject()(
     implicit request =>
       abilityForm.form.bindFromRequest().fold (
         hasErrors => {
-          println(hasErrors.errors)
           abilityService.getAbilityListItems.map {
             case (spellAndUpgrades, specials) =>
               BadRequest(abilityListView(spellAndUpgrades, specials))
           }
         },
         abilityQuery => {
-          println(abilityQuery)
           abilityService.query(abilityQuery).map {
             case (spellAndUpgrades, specials) =>
               Ok(abilityListView(spellAndUpgrades, specials))

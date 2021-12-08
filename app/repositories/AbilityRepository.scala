@@ -57,7 +57,6 @@ class AbilityRepository @Inject()(reactiveMongoApi: ReactiveMongoApi)(implicit e
       val query = Json.obj(
         "$or" -> Json.arr(allJson.map(json => toJsFieldJsValueWrapper(json)): _*)
       )
-      println(query)
 
       collection.find(query).cursor[Ability]().collect[Seq]()
   }
