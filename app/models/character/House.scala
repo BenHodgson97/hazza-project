@@ -1,6 +1,7 @@
 package models.character
 
 import models.character.Characteristic._
+import play.api.libs.json.{JsValue, Json, Reads}
 
 sealed trait House {
   val primary: Characteristic
@@ -26,5 +27,21 @@ object House {
 
   case class CunningSlytherin(secondary: Characteristic) extends House {
     override val primary: Characteristic = Cunning
+  }
+
+  implicit val gryffindorReads: Reads[Gryffindor] = Json.reads[Gryffindor]
+  implicit val hufflepuffReads: Reads[Hufflepuff] = Json.reads[Hufflepuff]
+  implicit val ravenclawReads: Reads[Ravenclaw] = Json.reads[Ravenclaw]
+  implicit val ferocitySlytherinReads: Reads[FerocitySlytherin] = Json.reads[FerocitySlytherin]
+  implicit val cunningSlytherinReads: Reads[CunningSlytherin] = Json.reads[CunningSlytherin]
+
+  implicit val houseReads: Reads[House] = (json: JsValue) => {
+    (json \ "name").as[String] match {
+      case "Gryffindor" => json.validate[Gryffindor]
+      case "Hufflepuff" => json.validate[Hufflepuff]
+      case "Ravenclaw" => json.validate[Ravenclaw]
+      case "FerocitySlytherin" => json.validate[FerocitySlytherin]
+      case "CunningSlytherin" => json.validate[CunningSlytherin]
+    }
   }
 }
