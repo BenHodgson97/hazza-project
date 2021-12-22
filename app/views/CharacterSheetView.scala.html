@@ -1,7 +1,72 @@
+@import models.character._
+
 @this(main: MainTemplate)
 
-@()(implicit request: AuthenticatedUserRequest[AnyContent])
+@(characterSheet: CharacterSheet)(implicit request: AuthenticatedUserRequest[AnyContent])
 
-@main("Character Sheet"){
-  <h1>Character Sheet</h1>
+@main("Character Sheet", Seq("characterSheet")){
+  <h1>Character Sheet - @characterSheet.info.name</h1>
+  <div class="character-sheet">
+    <div class="info-container">
+      <div class="information-one">
+        <div class="character-name">
+          <label for="character">Character Name: </label>
+          <input type="text" id="character" value="@characterSheet.info.name">
+        </div>
+        <div class="features">
+          <label for="features">Notable Features: </label>
+          <input type="text" id="features" value="@characterSheet.info.features">
+        </div>
+        <div class="gender">
+          <label for="gender">Gender: </label>
+          <input type="text" id="gender" value="@characterSheet.info.gender">
+        </div>
+        <div class="height">
+          <label for="height">Height: </label>
+          <input type="text" id="height" value="@characterSheet.info.height">
+        </div>
+        <div class="build">
+          <label for="build">Build: </label>
+          <input type="text" id="build" value="@characterSheet.info.build">
+        </div>
+      </div>
+      <div class="information-two">
+        <div class="player-name">
+          <label for="player">Player Name: </label>
+          <input type="text" id="player" value="@characterSheet.info.player">
+        </div>
+        <div class="signature-spell">
+          <label for="signature">Signature Spell: </label>
+          <input type="text" id="signature" value="@characterSheet.info.signatureSpell">
+        </div>
+        <div class="patronus">
+          <label for="patronus">Patronus: </label>
+          <input type="text" id="patronus" value="@characterSheet.info.patronus">
+        </div>
+        <div class="house">
+          <label for="house">House: </label>
+          <input type="text" id="house" value="@characterSheet.info.house.displayString">
+        </div>
+      </div>
+      <div class="wandInfo">
+        <p>Wand</p>
+        <div class="core">
+          <label for="core">Core: </label>
+          <input type="text" id="core" value="@characterSheet.wandInfo.core">
+        </div>
+        <div class="wood">
+          <label for="wood">Wood: </label>
+          <input type="text" id="wood" value="@characterSheet.wandInfo.wood">
+        </div>
+        <div class="currentWand">
+          <label for="current">Current Wand: </label>
+          <input type="text" id="current" value="@characterSheet.wandInfo.currentWand">
+        </div>
+        <div class="health">
+          <label for="health">Health: </label>
+          <input type="text" id="health" value="@characterSheet.wandInfo.health">
+        </div>
+      </div>
+    </div>
+  </div>
 }

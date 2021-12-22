@@ -1,0 +1,62 @@
+.character-sheet {
+    background-color: #ffe6b3;
+    padding: 20px;
+}
+
+.info-container {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+label {
+    font-weight: bold;
+    font-size: 20pt;
+    font-family: 'Calibri', sans-serif;
+    padding-right: 10px;
+}
+
+input {
+    width: 300px;
+    font-size: 16pt;
+}
+
+.info-container > div {
+    text-align: right;
+}
+
+.information-one > div {
+    padding-bottom: 5px;
+}
+
+.information-two {
+    margin-top: 42px;
+}
+
+.information-two > div {
+    padding-bottom: 5px;
+}
+
+p {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 22pt;
+    border-bottom: 1px solid black;
+}
+
+.wandInfo {
+    border: 1px solid black;
+    padding-bottom: 5px;
+}
+
+.wandInfo > div {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.core {
+    padding-top: 5px;
+}

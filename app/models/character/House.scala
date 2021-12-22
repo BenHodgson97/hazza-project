@@ -6,6 +6,10 @@ import play.api.libs.json.{JsValue, Json, Reads}
 sealed trait House {
   val primary: Characteristic
   val secondary: Characteristic
+
+  val displayName: String = this.getClass.getSimpleName
+
+  lazy val displayString = s"$displayName($primary & $secondary)"
 }
 
 object House {
@@ -23,10 +27,12 @@ object House {
 
   case class FerocitySlytherin(secondary: Characteristic) extends House {
     override val primary: Characteristic = Ferocity
+    override val displayName: String = "Slytherin"
   }
 
   case class CunningSlytherin(secondary: Characteristic) extends House {
     override val primary: Characteristic = Cunning
+    override val displayName: String = "Slytherin"
   }
 
   implicit val gryffindorReads: Reads[Gryffindor] = Json.reads[Gryffindor]

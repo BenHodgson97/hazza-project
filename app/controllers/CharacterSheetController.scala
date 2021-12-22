@@ -19,7 +19,7 @@ class CharacterSheetController @Inject()(
   def onPageLoad: Action[AnyContent] = (authAction andThen getUserDataAction).async {implicit request: AuthenticatedUserRequest[AnyContent] =>
     characterSheetRepository.getSheetByUser(request.username).map {
       sheet =>
-        sheet.map(sheet => Ok(characterSheetView())).getOrElse(Unauthorized("can't find it"))
+        sheet.map(sheet => Ok(characterSheetView(sheet))).getOrElse(Unauthorized("can't find it"))
     }
   }
 }
