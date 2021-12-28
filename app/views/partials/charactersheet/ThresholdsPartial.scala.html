@@ -1,0 +1,17 @@
+@import models.character._
+
+@this()
+
+@(characterSheet: CharacterSheet)
+
+<div class="thresholds-container">
+  @characterSheet.thresholds.thresholdsMap.map {
+    case (name, Threshold(threshold, current)) => {
+      <div>
+        <div>@name</div>
+        <div>Threshold @threshold</div>
+        <div>Current @current</div>
+      </div>
+    }
+  }
+</div>

@@ -2,7 +2,7 @@ package models.character
 
 import play.api.libs.json.{Json, Reads}
 
-case class CharacterSheet(info: Information, wandInfo: WandInformation) {
+case class CharacterSheet(info: Information, wandInfo: WandInformation, statistics: Statistics, thresholds: Thresholds) {
 
 }
 

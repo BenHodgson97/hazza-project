@@ -1,0 +1,16 @@
+@import models.character.CharacterSheet
+
+@this()
+
+@(characterSheet: CharacterSheet)
+
+<div class="statistics-container">
+  @characterSheet.statistics.statsMap.map {
+    case (characteristic, int) => {
+      <div>
+        <div>@int</div>
+        <div>@characteristic.toString</div>
+      </div>
+    }
+  }
+</div>
