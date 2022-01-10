@@ -3,15 +3,30 @@
 @this()
 
 @(characterSheet: CharacterSheet)
-
-<div class="thresholds-container">
-  @characterSheet.thresholds.thresholdsMap.map {
-    case (name, Threshold(threshold, current)) => {
-      <div>
-        <div>@name</div>
-        <div>Threshold @threshold</div>
-        <div>Current @current</div>
-      </div>
+<div class="threshold-and-rank">
+  <div class="thresholds-container">
+    @characterSheet.thresholds.thresholdsMap.map {
+      case (name, Threshold(threshold, current)) => {
+        <div>
+          <div class="threshold-name">@name</div>
+          <div class="threshold-and-current">
+            <div class="threshold">
+              <input type="text" id="threshold" value="@threshold">
+              <br>
+              <p>Threshold</p>
+            </div>
+            <div class="threshold-current">
+              <input type="text" id="threshold-current" value="@current">
+              <br>
+              <p>Current</p>
+            </div>
+          </div>
+        </div>
+      }
     }
-  }
+  </div>
+  <div class="magic-rank">
+    <p>Magic Rank </p>
+    @characterSheet.rankAndXp.magicRank
+  </div>
 </div>

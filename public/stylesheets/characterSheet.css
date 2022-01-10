@@ -16,7 +16,7 @@ label {
     padding-right: 10px;
 }
 
-input {
+.info-container input {
     width: 300px;
     font-size: 16pt;
 }
@@ -37,7 +37,7 @@ input {
     padding-bottom: 5px;
 }
 
-p {
+.wand-info p {
     text-align: center;
     margin-top: 0px;
     margin-bottom: 5px;
@@ -47,16 +47,115 @@ p {
     border-bottom: 1px solid black;
 }
 
-.wandInfo {
+.wand-info {
     border: 1px solid black;
     padding-bottom: 5px;
 }
 
-.wandInfo > div {
+.wand-info > div {
     padding-left: 5px;
     padding-right: 5px;
 }
 
 .core {
     padding-top: 5px;
+}
+
+.statistics-container {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 50px;
+}
+
+
+.statistics-container > div {
+    text-align: center;
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+.statistics-container input {
+    font-size: 16pt;
+    text-align: center;
+    width: 40px;
+}
+
+.stat-char {
+    border-top: 3px solid black;
+    margin-top: 5px;
+    padding-top: 3px;
+}
+
+.thresholds-container {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 60%;
+    padding-right: 20%;
+}
+
+.thresholds-container .threshold-name {
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 20pt;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.thresholds-container .threshold {
+    text-align: center;
+    margin-right: 5px;
+    width: 91px;
+}
+
+.thresholds-container input {
+    font-size: 16pt;
+    text-align: center;
+    width: 40px;
+}
+
+.thresholds-container .threshold-current {
+    text-align: center;
+    margin-left: 5px;
+    width: 91px;
+}
+
+.threshold-and-current {
+    display: inline-flex;
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+.threshold-and-current p {
+    border-top: 3px solid black;
+    padding-top: 10px;
+    margin-top: 5px;
+}
+
+.magic-rank {
+    font-family: 'Calibri', sans-serif;
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: center;
+    border: 3px solid black;
+    background-color: #FFFFFF;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.magic-rank p {
+    font-family: 'Calibri', sans-serif;
+    font-weight: bold;
+    font-size: 20pt;
+    margin-bottom: 22px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    padding-bottom: 19px;
+}
+
+.threshold-and-rank {
+    display: flex;
+    margin-top: 50px;
 }

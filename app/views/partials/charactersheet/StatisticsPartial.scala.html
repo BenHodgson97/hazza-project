@@ -8,8 +8,10 @@
   @characterSheet.statistics.statsMap.map {
     case (characteristic, int) => {
       <div>
-        <div>@int</div>
-        <div>@characteristic.toString</div>
+        <div>
+          <input type="text" id="stat-int" value="@int">
+        </div>
+        <div class="stat-char">@characteristic.toString</div>
       </div>
     }
   }
